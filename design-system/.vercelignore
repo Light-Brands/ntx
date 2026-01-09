@@ -1,0 +1,40 @@
+# Vercel deployment ignore file
+# Files and directories listed here will not be uploaded to Vercel
+
+# Sub-projects (separate deployments)
+cms/
+design-system-v2/
+
+# Documentation and planning
+planning/
+Deck/
+ai-coding-config/
+brand-identity/
+specs/
+
+# Development files
+.vscode/
+.idea/
+*.md
+!README.md
+
+# Test files
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+__tests__/
+
+# Git
+.git/
+.gitignore
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Misc
+*.log
+.DS_Store
+Thumbs.db
