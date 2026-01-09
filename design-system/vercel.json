@@ -1,12 +1,40 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd design-system-v2 && npm install && npm run build",
-  "devCommand": "cd design-system-v2 && npm run dev",
-  "installCommand": "cd design-system-v2 && npm install",
-  "outputDirectory": "design-system-v2/dist",
-  "framework": null,
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
   "public": true,
   "github": {
     "silent": false
-  }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/docs",
+      "destination": "/docs/README"
+    }
+  ]
 }
