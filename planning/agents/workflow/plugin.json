@@ -1,0 +1,71 @@
+{
+  "name": "workflow-agents",
+  "version": "1.0.0",
+  "description": "Automated development workflow agents for GitHub issue-to-merge automation",
+  "author": {
+    "name": "Brand Factory",
+    "url": "https://github.com/danlawless/brand-factory"
+  },
+  "repository": "https://github.com/danlawless/brand-factory",
+  "license": "MIT",
+  "keywords": [
+    "automation",
+    "workflow",
+    "agents",
+    "github",
+    "ci-cd",
+    "development",
+    "orchestration"
+  ],
+  "agents": [
+    {
+      "name": "issue-manager",
+      "description": "Create and validate GitHub issues from incoming requests",
+      "file": "issue-manager.md"
+    },
+    {
+      "name": "prep-agent",
+      "description": "Set up development environment and branch for a GitHub issue",
+      "file": "prep-agent.md"
+    },
+    {
+      "name": "implementer-agent",
+      "description": "Implement solutions and create PRs from prepared environments",
+      "file": "implementer-agent.md"
+    },
+    {
+      "name": "reviewer-agent",
+      "description": "Perform code review and post detailed comments on PRs",
+      "file": "reviewer-agent.md"
+    },
+    {
+      "name": "fixer-agent",
+      "description": "Apply fixes for review comments and iterate until approved",
+      "file": "fixer-agent.md"
+    },
+    {
+      "name": "validator-agent",
+      "description": "Run final validations and auto-merge approved PRs",
+      "file": "validator-agent.md"
+    },
+    {
+      "name": "closer-agent",
+      "description": "Close GitHub issues with summary and PR links after merge",
+      "file": "closer-agent.md"
+    },
+    {
+      "name": "orchestrator",
+      "description": "Supervise and coordinate the automated development workflow",
+      "file": "orchestrator.md"
+    }
+  ],
+  "dependencies": {
+    "ai-coding-config": "^8.6.0"
+  },
+  "integrations": [
+    "github-cli",
+    "git",
+    "node",
+    "python"
+  ]
+}

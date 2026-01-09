@@ -1,0 +1,191 @@
+{
+  "name": "brand-proposal",
+  "version": "1.0.0",
+  "description": "Agent group managing the complete brand proposal lifecycle from intake through council review to legal contracting",
+  "agents": [
+    {
+      "name": "proposal-orchestrator",
+      "description": "Central coordinator routing proposals and managing workflow state",
+      "file": "proposal-orchestrator.md",
+      "color": "gold",
+      "triggers": [
+        "new proposal",
+        "proposal status",
+        "route proposal",
+        "proposal workflow"
+      ]
+    },
+    {
+      "name": "intake-guardian",
+      "description": "Initial proposal screening and completeness verification",
+      "file": "intake-guardian.md",
+      "color": "teal",
+      "triggers": [
+        "intake review",
+        "proposal submission",
+        "eligibility check",
+        "completeness review"
+      ]
+    },
+    {
+      "name": "council-liaison",
+      "description": "Coordinates Stewardship Council evaluation and manages 8/10 threshold scoring",
+      "file": "council-liaison.md",
+      "color": "purple",
+      "triggers": [
+        "council review",
+        "proposal scoring",
+        "alignment evaluation",
+        "threshold check"
+      ]
+    },
+    {
+      "name": "feedback-architect",
+      "description": "Constructs improvement guidance for proposals below threshold",
+      "file": "feedback-architect.md",
+      "color": "orange",
+      "triggers": [
+        "create feedback",
+        "improvement plan",
+        "proposal gaps",
+        "alignment feedback"
+      ]
+    },
+    {
+      "name": "proposal-refiner",
+      "description": "Partners with brands to iterate and strengthen proposals",
+      "file": "proposal-refiner.md",
+      "color": "cyan",
+      "triggers": [
+        "refine proposal",
+        "proposal iteration",
+        "revision support",
+        "strengthen proposal"
+      ]
+    },
+    {
+      "name": "readiness-assessor",
+      "description": "Final verification before legal phase ensuring all requirements met",
+      "file": "readiness-assessor.md",
+      "color": "green",
+      "triggers": [
+        "readiness check",
+        "final verification",
+        "pre-legal review",
+        "approval confirmation"
+      ]
+    },
+    {
+      "name": "legal-bridge",
+      "description": "Manages transition to Legal Department for contract drafting",
+      "file": "legal-bridge.md",
+      "color": "navy",
+      "triggers": [
+        "legal handoff",
+        "contract initiation",
+        "legal transition",
+        "engagement start"
+      ]
+    }
+  ],
+  "storage": {
+    "vault_path": "/proposal-vault",
+    "structure": {
+      "incoming": "New submissions awaiting intake review",
+      "under-review": "Proposals in active council evaluation",
+      "feedback": "Improvement plans for iterating proposals",
+      "approved": "Proposals achieving 8/10+ council score",
+      "rejected": "Declined proposals archive",
+      "templates": "Proposal templates and submission guidelines",
+      "archive": "Historical proposal records"
+    }
+  },
+  "workflows": {
+    "standard-proposal": {
+      "description": "Complete proposal journey from submission to contract",
+      "stages": [
+        "intake",
+        "council-review",
+        "feedback-iteration",
+        "readiness",
+        "legal-handoff"
+      ],
+      "agents": [
+        "intake-guardian",
+        "council-liaison",
+        "feedback-architect",
+        "proposal-refiner",
+        "readiness-assessor",
+        "legal-bridge"
+      ]
+    },
+    "expedited-proposal": {
+      "description": "Fast-track for pre-qualified brands with existing relationships",
+      "stages": [
+        "intake",
+        "council-review",
+        "readiness",
+        "legal-handoff"
+      ],
+      "agents": [
+        "intake-guardian",
+        "council-liaison",
+        "readiness-assessor",
+        "legal-bridge"
+      ]
+    },
+    "iteration-cycle": {
+      "description": "Feedback and revision loop for proposals below threshold",
+      "stages": [
+        "feedback-generation",
+        "brand-revision",
+        "re-evaluation"
+      ],
+      "agents": [
+        "feedback-architect",
+        "proposal-refiner",
+        "council-liaison"
+      ],
+      "max_iterations": 3
+    }
+  },
+  "thresholds": {
+    "approval_minimum": 8,
+    "maximum_score": 10,
+    "iteration_encouraged": {
+      "min": 6,
+      "max": 7
+    },
+    "reconsider_range": {
+      "min": 4,
+      "max": 5
+    },
+    "decline_range": {
+      "min": 0,
+      "max": 3
+    }
+  },
+  "scoring_dimensions": [
+    "soul-purpose-alignment",
+    "gaia-harmony",
+    "sacred-systems-integration",
+    "cultural-restoration",
+    "collective-futures",
+    "exchange-stewardship",
+    "multiverse-reflection",
+    "indigenous-wisdom-honor",
+    "shadow-integration",
+    "governance-readiness"
+  ],
+  "integrations": [
+    "stewardship-council",
+    "legal-department",
+    "workflow-agents",
+    "intuition-engine"
+  ],
+  "dependencies": {
+    "intuition-engine": "../INTUITION-ENGINE.md",
+    "stewardship-council": "../stewardship-council/",
+    "legal-department": "../legal-department/"
+  }
+}

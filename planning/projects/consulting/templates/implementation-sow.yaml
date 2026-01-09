@@ -1,0 +1,299 @@
+# AI Implementation Sprint - Statement of Work Template
+# Use this template to define implementation project scope
+# All sections should be completed by the Implementation Lead
+
+statement_of_work:
+  # Metadata
+  engagement_id: "ENG-YYYY-NNN"
+  sow_version: "1.0"
+  created_date: "YYYY-MM-DD"
+  effective_date: "YYYY-MM-DD"
+
+  # Parties
+  parties:
+    client:
+      name: ""
+      company: ""
+      email: ""
+      phone: ""
+      address: ""
+
+    provider:
+      name: "AI Brand Factory"
+      contact: ""
+      email: ""
+
+  # Project Overview
+  project:
+    name: ""  # e.g., "AI Implementation Sprint - Marketing Automation"
+
+    summary: |
+      Brief description of the project and objectives...
+
+    background: |
+      Context from discovery/blueprint that led to this engagement...
+
+    objectives:
+      - objective: ""
+        success_criteria: ""
+      - objective: ""
+        success_criteria: ""
+
+  # Scope of Work
+  scope:
+    in_scope:
+      systems:
+        - system: ""
+          description: ""
+          deliverables:
+            - ""
+
+      integrations:
+        - integration: ""
+          description: ""
+
+      training:
+        - topic: ""
+          audience: ""
+          format: ""  # live | recorded | documentation
+
+      documentation:
+        - document: ""
+          purpose: ""
+
+    out_of_scope:
+      - item: ""
+        reason: ""
+
+    assumptions:
+      - assumption: ""
+        impact_if_wrong: ""
+
+    dependencies:
+      client_responsibilities:
+        - responsibility: ""
+          deadline: ""
+
+      third_party:
+        - dependency: ""
+          owner: ""
+
+  # Deliverables
+  deliverables:
+    - id: 1
+      name: ""
+      description: |
+        Detailed description of the deliverable...
+
+      acceptance_criteria:
+        - ""
+
+      target_date: "YYYY-MM-DD"
+
+  # Timeline
+  timeline:
+    start_date: "YYYY-MM-DD"
+    end_date: "YYYY-MM-DD"
+    total_duration: ""  # e.g., "5 weeks"
+
+    phases:
+      - phase: "Kickoff & Planning"
+        duration: ""
+        start: "Week 1"
+        activities:
+          - ""
+        milestones:
+          - milestone: ""
+            date: ""
+
+      - phase: "Development Sprint 1"
+        duration: ""
+        start: ""
+        activities:
+          - ""
+        milestones:
+          - milestone: ""
+            date: ""
+
+      - phase: "Development Sprint 2"
+        duration: ""
+        start: ""
+        activities:
+          - ""
+        milestones:
+          - milestone: ""
+            date: ""
+
+      - phase: "Integration & Testing"
+        duration: ""
+        start: ""
+        activities:
+          - ""
+        milestones:
+          - milestone: ""
+            date: ""
+
+      - phase: "Training & Handoff"
+        duration: ""
+        start: ""
+        activities:
+          - ""
+        milestones:
+          - milestone: ""
+            date: ""
+
+    key_dates:
+      kickoff: ""
+      mid_point_review: ""
+      final_delivery: ""
+      support_end: ""
+
+  # Investment
+  investment:
+    pricing_model: ""  # fixed | retainer | bundle
+
+    fixed_project:
+      total: 0
+      payment_schedule:
+        - milestone: "Project Start"
+          amount: 0
+          percentage: ""
+          due: "Upon signing"
+
+        - milestone: "Mid-Project"
+          amount: 0
+          percentage: ""
+          due: ""
+
+        - milestone: "Final Delivery"
+          amount: 0
+          percentage: ""
+          due: ""
+
+    retainer:
+      monthly_fee: 0
+      minimum_term: ""  # e.g., "3 months"
+      scope_per_month: ""
+      overage_rate: ""
+
+    additional_costs:
+      - item: ""
+        estimate: ""
+        responsibility: ""  # client | provider | shared
+
+    payment_terms:
+      method: ""
+      net_days: 0
+      late_fee: ""
+
+  # Communication
+  communication:
+    primary_contacts:
+      client:
+        name: ""
+        role: ""
+        email: ""
+        phone: ""
+
+      provider:
+        name: ""
+        role: ""
+        email: ""
+        phone: ""
+
+    cadence:
+      - meeting: "Kickoff Call"
+        frequency: "Once"
+        attendees: ""
+
+      - meeting: "Progress Check-in"
+        frequency: ""  # e.g., "2x/week"
+        format: ""
+        attendees: ""
+
+      - meeting: "Sprint Review"
+        frequency: ""
+        format: ""
+        attendees: ""
+
+    tools:
+      project_management: ""
+      communication: ""
+      file_sharing: ""
+
+    escalation:
+      - level: 1
+        contact: ""
+        response_time: ""
+
+      - level: 2
+        contact: ""
+        response_time: ""
+
+  # Change Management
+  change_management:
+    process: |
+      How changes to scope will be handled...
+
+    change_request:
+      required_for:
+        - ""
+
+      includes:
+        - "Description of change"
+        - "Impact on timeline"
+        - "Impact on investment"
+        - "Client approval signature"
+
+  # Support & Warranty
+  support:
+    included_period: ""  # e.g., "2 weeks post-delivery"
+
+    included_support:
+      - "Bug fixes"
+      - "Minor adjustments"
+      - "Questions and guidance"
+
+    excluded:
+      - ""
+
+    ongoing_options:
+      - option: ""
+        price: ""
+        scope: ""
+
+  # Terms
+  terms:
+    confidentiality: |
+      Both parties agree to maintain confidentiality of proprietary information...
+
+    intellectual_property: |
+      Upon final payment, client owns all deliverables created specifically for this engagement...
+
+    limitation_of_liability: |
+      Standard limitation of liability terms...
+
+    termination:
+      by_client: ""
+      by_provider: ""
+      fees_upon_termination: ""
+
+  # Signatures
+  signatures:
+    client:
+      name: ""
+      title: ""
+      date: ""
+      signature: ""
+
+    provider:
+      name: ""
+      title: ""
+      date: ""
+      signature: ""
+
+  # Appendix
+  appendix:
+    technical_specifications: ""
+    detailed_requirements: ""
+    reference_documents: ""

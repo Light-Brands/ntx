@@ -1,0 +1,200 @@
+# VIBEUP Development Tracker - Coverage Gates Schema
+# JSON Schema for TDD coverage enforcement configuration
+# Version: 1.0.0
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://vibeup.io/schemas/tracker/coverage-gates.schema.yaml"
+title: "VIBEUP Coverage Gates"
+description: "Configuration for TDD enforcement and coverage thresholds"
+
+type: object
+required:
+  - version
+  - enforced
+  - gates
+
+properties:
+  version:
+    type: string
+    pattern: "^\\d+\\.\\d+(\\.\\d+)?$"
+    
+  enforced:
+    type: boolean
+    description: "Whether coverage gates are actively enforced"
+    
+  lastCheck:
+    type: string
+    format: date-time
+    
+  overallStatus:
+    type: string
+    enum: ["passing", "failing", "not-checked"]
+    
+  gates:
+    type: object
+    required:
+      - service-layer
+      - api-routes
+      - components
+    properties:
+      service-layer:
+        $ref: "#/definitions/coverageGate"
+        
+      api-routes:
+        $ref: "#/definitions/coverageGate"
+        
+      components:
+        $ref: "#/definitions/coverageGate"
+        
+      e2e-critical-paths:
+        allOf:
+          - $ref: "#/definitions/coverageGate"
+          - properties:
+              paths:
+                type: array
+                items:
+                  type: string
+                description: "Critical user flows that must have 100% coverage"
+                
+      integration-tests:
+        $ref: "#/definitions/coverageGate"
+        
+      utils-helpers:
+        $ref: "#/definitions/coverageGate"
+        
+  epicOverrides:
+    type: object
+    description: "Per-epic overrides for coverage requirements"
+    additionalProperties:
+      type: object
+      properties:
+        gates:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              threshold:
+                type: number
+              enforced:
+                type: boolean
+        reason:
+          type: string
+          description: "Why this epic has different requirements"
+          
+  featureOverrides:
+    type: object
+    description: "Per-feature overrides for coverage requirements"
+    additionalProperties:
+      type: object
+      properties:
+        gates:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              threshold:
+                type: number
+              enforced:
+                type: boolean
+        reason:
+          type: string
+          
+  exemptions:
+    type: array
+    description: "Files or patterns exempt from coverage requirements"
+    items:
+      type: object
+      properties:
+        pattern:
+          type: string
+          description: "Glob pattern for exempted files"
+        reason:
+          type: string
+          description: "Why this is exempt"
+        approvedBy:
+          type: string
+        approvedAt:
+          type: string
+          format: date-time
+          
+  tddWorkflow:
+    type: object
+    description: "TDD workflow enforcement settings"
+    properties:
+      requireTestsFirst:
+        type: boolean
+        description: "Block implementation if tests not written first"
+      redGreenRefactorTracking:
+        type: boolean
+        description: "Track TDD cycle state"
+      minimumTestsPerEndpoint:
+        type: integer
+        minimum: 1
+      minimumTestsPerService:
+        type: integer
+        minimum: 1
+      minimumTestsPerComponent:
+        type: integer
+        minimum: 1
+        
+  reporting:
+    type: object
+    properties:
+      reportOnComplete:
+        type: boolean
+        description: "Generate coverage report when task completes"
+      reportFormat:
+        type: string
+        enum: ["json", "html", "text", "lcov"]
+      reportDirectory:
+        type: string
+      trendTracking:
+        type: boolean
+        description: "Track coverage trends over time"
+      alertOnDecrease:
+        type: boolean
+        description: "Alert if coverage decreases"
+      decreaseThreshold:
+        type: number
+        description: "Percentage decrease that triggers alert"
+
+definitions:
+  coverageGate:
+    type: object
+    required:
+      - threshold
+      - enforced
+    properties:
+      threshold:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Minimum coverage percentage required"
+      enforced:
+        type: boolean
+        description: "Whether this gate blocks completion"
+      currentCoverage:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Current coverage level"
+      status:
+        type: string
+        enum: ["passing", "failing", "not-checked"]
+      lastChecked:
+        type: string
+        format: date-time
+      trend:
+        type: string
+        enum: ["increasing", "stable", "decreasing"]
+      history:
+        type: array
+        items:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            coverage:
+              type: number
+

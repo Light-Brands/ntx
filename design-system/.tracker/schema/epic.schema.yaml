@@ -1,0 +1,295 @@
+# VIBEUP Development Tracker - Epic Schema
+# JSON Schema for per-epic atomic task tracking
+# Version: 1.0.0
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://vibeup.io/schemas/tracker/epic.schema.yaml"
+title: "VIBEUP Epic Tracking"
+description: "Per-epic atomic task tracking with features, tables, endpoints, services, and components"
+
+type: object
+required:
+  - epicId
+  - epicName
+  - specFile
+  - status
+  - metrics
+  - features
+  - dependencies
+
+properties:
+  epicId:
+    type: string
+    pattern: "^epic-(0[0-8]|1[ab])$"
+    description: "Epic identifier (epic-00 through epic-08, epic-1a, epic-1b)"
+    
+  epicName:
+    type: string
+    description: "Human-readable epic name"
+    
+  specFile:
+    type: string
+    description: "Path to epic specification markdown file"
+    
+  status:
+    type: string
+    enum: ["not-started", "in-progress", "blocked", "complete"]
+    
+  startedAt:
+    type: string
+    format: date-time
+    
+  completedAt:
+    type: string
+    format: date-time
+    
+  metrics:
+    type: object
+    required:
+      - totalTasks
+      - completedTasks
+      - percentage
+    properties:
+      totalTasks:
+        type: integer
+        minimum: 0
+      completedTasks:
+        type: integer
+        minimum: 0
+      inProgressTasks:
+        type: integer
+        minimum: 0
+      blockedTasks:
+        type: integer
+        minimum: 0
+      percentage:
+        type: number
+        minimum: 0
+        maximum: 100
+      testCoverage:
+        type: number
+        minimum: 0
+        maximum: 100
+      testsWritten:
+        type: integer
+        minimum: 0
+      testsPassing:
+        type: integer
+        minimum: 0
+        
+  features:
+    type: object
+    description: "Feature breakdown within the epic"
+    additionalProperties:
+      $ref: "#/definitions/feature"
+      
+  toolingValidation:
+    type: object
+    properties:
+      lastCheck:
+        type: string
+        format: date-time
+      rulesLoaded:
+        type: array
+        items:
+          type: string
+      rulesApplied:
+        type: boolean
+      coverageGatePassing:
+        type: boolean
+      tddEnforced:
+        type: boolean
+        
+  dependencies:
+    type: object
+    properties:
+      blockedBy:
+        type: array
+        items:
+          type: string
+        description: "Epic IDs that must complete before this epic"
+      blocks:
+        type: array
+        items:
+          type: string
+        description: "Epic IDs blocked by this epic"
+
+definitions:
+  atomicTask:
+    type: object
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        enum: ["pending", "in-progress", "complete", "blocked", "skipped"]
+      assignedTo:
+        type: string
+        enum: ["cursor", "claude-cli", "swarm-agent"]
+        description: "Which agent is working on this task"
+      pr:
+        type: integer
+        description: "Pull request number when complete"
+      prUrl:
+        type: string
+        format: uri
+        description: "Full URL to pull request"
+      tests:
+        type: integer
+        minimum: 0
+        description: "Number of tests covering this task"
+      coverage:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Test coverage percentage"
+      startedAt:
+        type: string
+        format: date-time
+      completedAt:
+        type: string
+        format: date-time
+      duration:
+        type: string
+        description: "Time spent on task (e.g., '45m')"
+      notes:
+        type: string
+        description: "Implementation notes or blockers"
+        
+  tableTask:
+    type: object
+    description: "Database table atomic tasks"
+    properties:
+      schema:
+        $ref: "#/definitions/atomicTask"
+      rls_policies:
+        $ref: "#/definitions/atomicTask"
+      indexes:
+        $ref: "#/definitions/atomicTask"
+      migrations:
+        $ref: "#/definitions/atomicTask"
+      seed_data:
+        $ref: "#/definitions/atomicTask"
+        
+  endpointTask:
+    type: object
+    description: "API endpoint atomic tasks"
+    properties:
+      implementation:
+        $ref: "#/definitions/atomicTask"
+      validation:
+        $ref: "#/definitions/atomicTask"
+      tests_unit:
+        allOf:
+          - $ref: "#/definitions/atomicTask"
+          - properties:
+              count:
+                type: integer
+                minimum: 0
+      tests_integration:
+        allOf:
+          - $ref: "#/definitions/atomicTask"
+          - properties:
+              count:
+                type: integer
+                minimum: 0
+      documentation:
+        $ref: "#/definitions/atomicTask"
+        
+  serviceTask:
+    type: object
+    description: "Service layer atomic tasks"
+    properties:
+      implementation:
+        $ref: "#/definitions/atomicTask"
+      unit_tests:
+        allOf:
+          - $ref: "#/definitions/atomicTask"
+          - properties:
+              count:
+                type: integer
+                minimum: 0
+              coverage:
+                type: number
+                minimum: 0
+                maximum: 100
+                
+  componentTask:
+    type: object
+    description: "UI component atomic tasks"
+    properties:
+      implementation:
+        $ref: "#/definitions/atomicTask"
+      styling:
+        $ref: "#/definitions/atomicTask"
+      accessibility:
+        $ref: "#/definitions/atomicTask"
+      tests:
+        allOf:
+          - $ref: "#/definitions/atomicTask"
+          - properties:
+              count:
+                type: integer
+                minimum: 0
+      storybook:
+        $ref: "#/definitions/atomicTask"
+        
+  feature:
+    type: object
+    required:
+      - status
+      - percentage
+    properties:
+      status:
+        type: string
+        enum: ["not-started", "in-progress", "blocked", "complete"]
+      percentage:
+        type: number
+        minimum: 0
+        maximum: 100
+      startedAt:
+        type: string
+        format: date-time
+      completedAt:
+        type: string
+        format: date-time
+      description:
+        type: string
+        
+      # Atomic task collections by type
+      tables:
+        type: object
+        description: "Database tables in this feature"
+        additionalProperties:
+          $ref: "#/definitions/tableTask"
+          
+      endpoints:
+        type: object
+        description: "API endpoints in this feature"
+        additionalProperties:
+          $ref: "#/definitions/endpointTask"
+          
+      services:
+        type: object
+        description: "Service layer methods in this feature"
+        additionalProperties:
+          $ref: "#/definitions/serviceTask"
+          
+      components:
+        type: object
+        description: "UI components in this feature"
+        additionalProperties:
+          $ref: "#/definitions/componentTask"
+          
+      tests:
+        type: object
+        description: "Standalone test suites"
+        additionalProperties:
+          $ref: "#/definitions/atomicTask"
+          
+      configs:
+        type: object
+        description: "Configuration files"
+        additionalProperties:
+          $ref: "#/definitions/atomicTask"
+

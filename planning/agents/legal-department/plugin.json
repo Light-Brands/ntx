@@ -1,0 +1,109 @@
+{
+  "name": "legal-department",
+  "version": "1.0.0",
+  "description": "Legal department agents for contract review, compliance, IP protection, and legal operations",
+  "author": {
+    "name": "Brand Factory",
+    "url": "https://github.com/danlawless/brand-factory"
+  },
+  "repository": "https://github.com/danlawless/brand-factory",
+  "license": "MIT",
+  "keywords": [
+    "legal",
+    "contracts",
+    "compliance",
+    "intellectual-property",
+    "risk-management",
+    "agreements",
+    "legal-ops"
+  ],
+  "agents": [
+    {
+      "name": "legal-orchestrator",
+      "description": "Coordinate and supervise all legal department workflows",
+      "file": "legal-orchestrator.md",
+      "color": "navy",
+      "triggers": ["legal review", "legal help", "legal department"]
+    },
+    {
+      "name": "contract-guardian",
+      "description": "Review, draft, and negotiate contracts to protect organizational interests",
+      "file": "contract-guardian.md",
+      "color": "gold",
+      "triggers": ["contract review", "draft contract", "NDA", "vendor agreement"]
+    },
+    {
+      "name": "compliance-sentinel",
+      "description": "Monitor regulatory compliance and ensure organizational policies meet legal requirements",
+      "file": "compliance-sentinel.md",
+      "color": "teal",
+      "triggers": ["compliance check", "regulation", "GDPR", "privacy", "audit"]
+    },
+    {
+      "name": "ip-protector",
+      "description": "Manage and protect intellectual property assets including trademarks, copyrights, and patents",
+      "file": "ip-protector.md",
+      "color": "purple",
+      "triggers": ["trademark", "copyright", "patent", "IP", "brand protection"]
+    },
+    {
+      "name": "risk-assessor",
+      "description": "Evaluate legal risks and develop mitigation strategies to protect the organization",
+      "file": "risk-assessor.md",
+      "color": "orange",
+      "triggers": ["legal risk", "liability", "exposure", "due diligence"]
+    },
+    {
+      "name": "agreement-keeper",
+      "description": "Track, store, and manage all legal agreements throughout their lifecycle",
+      "file": "agreement-keeper.md",
+      "color": "green",
+      "triggers": ["find agreement", "agreement status", "expiring contracts"]
+    },
+    {
+      "name": "legal-counsel",
+      "description": "Provide strategic legal advice and guidance on complex legal matters",
+      "file": "legal-counsel.md",
+      "color": "crimson",
+      "triggers": ["legal advice", "legal question", "legal strategy", "litigation"]
+    }
+  ],
+  "storage": {
+    "vault_path": "/legal-vault",
+    "structure": {
+      "contracts": "Active contracts (vendor, client, partner)",
+      "agreements": "NDAs, MOUs, LOIs, and other agreements",
+      "compliance": "Regulatory filings, policies, audits",
+      "intellectual-property": "Trademarks, copyrights, patents",
+      "risk-assessments": "Risk reports and mitigation plans",
+      "templates": "Reusable legal templates",
+      "archive": "Expired or terminated documents"
+    }
+  },
+  "workflows": {
+    "contract-review": {
+      "stages": ["intake", "review", "risk-assessment", "negotiation", "execution", "filing"],
+      "agents": ["legal-orchestrator", "contract-guardian", "risk-assessor", "agreement-keeper"]
+    },
+    "compliance-check": {
+      "stages": ["identification", "assessment", "gap-analysis", "remediation", "monitoring"],
+      "agents": ["legal-orchestrator", "compliance-sentinel", "risk-assessor"]
+    },
+    "ip-protection": {
+      "stages": ["identification", "clearance", "filing", "prosecution", "maintenance", "enforcement"],
+      "agents": ["legal-orchestrator", "ip-protector", "agreement-keeper"]
+    },
+    "dispute-resolution": {
+      "stages": ["assessment", "strategy", "negotiation", "resolution"],
+      "agents": ["legal-orchestrator", "legal-counsel", "risk-assessor"]
+    }
+  },
+  "integrations": [
+    "stewardship-council",
+    "workflow-agents",
+    "legion-of-living-light"
+  ],
+  "dependencies": {
+    "intuition-engine": "../INTUITION-ENGINE.md"
+  }
+}

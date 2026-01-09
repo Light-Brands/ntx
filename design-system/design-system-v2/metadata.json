@@ -1,0 +1,8 @@
+{
+  "name": "Onyx Design System",
+  "description": "A high-performance, dark-mode exclusive React design system for modern social media applications. Built with TypeScript and Tailwind CSS.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

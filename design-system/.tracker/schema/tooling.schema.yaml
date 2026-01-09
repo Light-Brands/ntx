@@ -1,0 +1,314 @@
+# VIBEUP Development Tracker - Tooling Schema
+# JSON Schema for ai-coding-config tooling validation tracking
+# Version: 1.0.0
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://vibeup.io/schemas/tracker/tooling.schema.yaml"
+title: "VIBEUP Tooling Validation"
+description: "Tracks ai-coding-config installation, rules loading, commands, and agents"
+
+type: object
+required:
+  - version
+  - lastValidated
+  - aiCodingConfig
+  - rules
+  - commands
+  - agents
+
+properties:
+  version:
+    type: string
+    pattern: "^\\d+\\.\\d+(\\.\\d+)?$"
+    
+  lastValidated:
+    type: string
+    format: date-time
+    
+  aiCodingConfig:
+    type: object
+    required:
+      - installed
+      - architecture
+    properties:
+      installed:
+        type: boolean
+        description: "Whether ai-coding-config is installed"
+      version:
+        type: string
+        description: "Version of ai-coding-config"
+      architecture:
+        type: string
+        enum: ["v1-cursor-first", "v2-cross-tool"]
+        description: "Architecture version (v2 is current)"
+      lastUpdated:
+        type: string
+        format: date-time
+      repoPath:
+        type: string
+        description: "Path to ~/.ai_coding_config"
+      issues:
+        type: array
+        items:
+          type: string
+          
+  rules:
+    type: object
+    required:
+      - totalAvailable
+      - discoveredAt
+      - categories
+    properties:
+      totalAvailable:
+        type: integer
+        minimum: 0
+        description: "Total .mdc files discovered"
+      discoveredAt:
+        type: string
+        format: date-time
+      rulesDirectory:
+        type: string
+        description: "Path to rules/ directory"
+      cursorSymlinkValid:
+        type: boolean
+        description: "Whether .cursor/rules/ symlinks to rules/"
+        
+      categories:
+        type: object
+        description: "Rules organized by category"
+        additionalProperties:
+          type: array
+          items:
+            $ref: "#/definitions/ruleStatus"
+            
+  commands:
+    type: object
+    properties:
+      directory:
+        type: string
+        description: "Path to .claude/commands/"
+      cursorSymlinkValid:
+        type: boolean
+        description: "Whether .cursor/commands/ symlinks correctly"
+      available:
+        type: array
+        items:
+          $ref: "#/definitions/commandStatus"
+          
+  agents:
+    type: object
+    properties:
+      directory:
+        type: string
+        description: "Path to .claude/agents/"
+      available:
+        type: array
+        items:
+          $ref: "#/definitions/agentStatus"
+          
+  skills:
+    type: object
+    properties:
+      directory:
+        type: string
+        description: "Path to .claude/skills/"
+      available:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            path:
+              type: string
+            description:
+              type: string
+            recommended:
+              type: boolean
+              
+  plugins:
+    type: object
+    properties:
+      directory:
+        type: string
+        description: "Path to plugins/"
+      installed:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            path:
+              type: string
+            hasAgents:
+              type: boolean
+            hasCommands:
+              type: boolean
+            hasRules:
+              type: boolean
+              
+  gitHooks:
+    type: object
+    properties:
+      huskyInstalled:
+        type: boolean
+      preCommitConfigured:
+        type: boolean
+      prePushConfigured:
+        type: boolean
+      hooksWorking:
+        type: boolean
+      lastVerified:
+        type: string
+        format: date-time
+        
+  coverage:
+    type: object
+    properties:
+      toolConfigured:
+        type: boolean
+        description: "Whether jest/vitest coverage is set up"
+      configPath:
+        type: string
+      thresholds:
+        type: object
+        properties:
+          statements:
+            type: number
+          branches:
+            type: number
+          functions:
+            type: number
+          lines:
+            type: number
+            
+  validationHistory:
+    type: array
+    description: "History of validation runs"
+    items:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        rulesLoaded:
+          type: integer
+        rulesApplied:
+          type: integer
+        issues:
+          type: array
+          items:
+            $ref: "#/definitions/validationIssue"
+
+definitions:
+  ruleStatus:
+    type: object
+    required:
+      - name
+      - path
+    properties:
+      name:
+        type: string
+        description: "Rule filename"
+      path:
+        type: string
+        description: "Full path to rule file"
+      alwaysApply:
+        type: boolean
+        description: "Whether this rule has alwaysApply: true"
+      description:
+        type: string
+        description: "Rule description from frontmatter"
+      loadedInSession:
+        type: boolean
+        description: "Whether rule was loaded in current session"
+      appliedCorrectly:
+        type: boolean
+        description: "Whether rule was applied without issues"
+      lastLoaded:
+        type: string
+        format: date-time
+      loadCount:
+        type: integer
+        minimum: 0
+        description: "How many times this rule has been loaded"
+        
+  commandStatus:
+    type: object
+    required:
+      - name
+      - path
+    properties:
+      name:
+        type: string
+        description: "Command name (e.g., '/load-rules')"
+      path:
+        type: string
+        description: "Path to command file"
+      description:
+        type: string
+        description: "Command description from frontmatter"
+      lastUsed:
+        type: string
+        format: date-time
+      usageCount:
+        type: integer
+        minimum: 0
+      cursorSymlink:
+        type: string
+        description: "Path to Cursor symlink if exists"
+        
+  agentStatus:
+    type: object
+    required:
+      - name
+      - path
+    properties:
+      name:
+        type: string
+        description: "Agent name (e.g., 'Ada (autonomous-developer)')"
+      path:
+        type: string
+        description: "Path to agent file"
+      description:
+        type: string
+      status:
+        type: string
+        enum: ["available", "busy", "unavailable"]
+      model:
+        type: string
+        description: "Model preference from frontmatter"
+      tools:
+        type: array
+        items:
+          type: string
+        description: "Tools the agent can use"
+      lastInvoked:
+        type: string
+        format: date-time
+      invocationCount:
+        type: integer
+        minimum: 0
+        
+  validationIssue:
+    type: object
+    properties:
+      rule:
+        type: string
+        description: "Rule or component with issue"
+      issue:
+        type: string
+        description: "Description of the issue"
+      severity:
+        type: string
+        enum: ["info", "warning", "error"]
+      resolved:
+        type: boolean
+      resolvedAt:
+        type: string
+        format: date-time
+      resolution:
+        type: string
+        description: "How the issue was resolved"
+

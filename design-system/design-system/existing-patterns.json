@@ -1,0 +1,487 @@
+{
+  "metadata": {
+    "generatedAt": "2025-12-12",
+    "version": "1.0.0",
+    "description": "Comprehensive design patterns and conventions extracted from the VIBEUP codebase"
+  },
+  "components": {
+    "naming": {
+      "convention": "PascalCase",
+      "pattern": "FeatureName + ComponentType",
+      "examples": [
+        { "name": "CommunityCard", "path": "components/communities/CommunityCard.tsx" },
+        { "name": "ListingCard", "path": "components/business/listing-card.tsx" },
+        { "name": "AppHeader", "path": "components/core/app-header.tsx" }
+      ],
+      "notes": "UI primitives use single names (Button, Card), feature components use descriptive compound names"
+    },
+    "propsInterface": {
+      "pattern": "ComponentNameProps",
+      "style": "Explicit interface definition",
+      "examples": [
+        {
+          "component": "AppHeader",
+          "code": "interface AppHeaderProps {\n  /** Page title */\n  title: string;\n  /** Subtitle/description */\n  subtitle?: string;\n  /** Show search bar */\n  showSearch?: boolean;\n  /** Callback when hamburger menu is clicked */\n  onMenuClick?: () => void;\n}"
+        },
+        {
+          "component": "CommunityCard",
+          "code": "interface CommunityCardProps {\n  community: Community | CommunitySummary;\n  onClick?: () => void;\n  index?: number;\n}"
+        }
+      ],
+      "conventions": [
+        "Required props first, optional props after",
+        "JSDoc comments with @param descriptions",
+        "Callbacks prefixed with 'on' (onClick, onSubmit, onComplete)",
+        "Boolean props prefixed with 'show', 'is', 'has'",
+        "className always optional for style composition"
+      ]
+    },
+    "composition": {
+      "patterns": [
+        {
+          "name": "React.forwardRef Pattern",
+          "usage": "Base UI components (Button, Card, Input)",
+          "example": "const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ className, variant, size, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\";\n    return (\n      <Comp\n        className={cn(buttonVariants({ variant, size, className }))}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\nButton.displayName = \"Button\";"
+        },
+        {
+          "name": "Functional Component Pattern",
+          "usage": "Feature components with business logic",
+          "example": "export function CommunityCard({ community, onClick, index = 0 }: CommunityCardProps) {\n  // Component logic\n  return <motion.div>...</motion.div>;\n}"
+        },
+        {
+          "name": "Compound Components",
+          "usage": "UI components with sub-components",
+          "example": "export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };"
+        }
+      ]
+    },
+    "styling": {
+      "approach": "Tailwind CSS with conditional composition",
+      "utilities": [
+        {
+          "name": "cn() utility",
+          "path": "lib/utils.ts",
+          "purpose": "Merge Tailwind classes with clsx and tailwind-merge",
+          "example": "className={cn(\n  \"rounded-lg bg-background p-4\",\n  \"hover:bg-muted/50 transition-colors\",\n  { \"border-blue-500\": variant === \"primary\" },\n  className\n)}"
+        }
+      ],
+      "patterns": [
+        {
+          "name": "Base + Variant Pattern",
+          "example": "const buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n        destructive: \"bg-destructive text-destructive-foreground hover:bg-destructive/90\"\n      },\n      size: {\n        default: \"h-10 px-4 py-2\",\n        sm: \"h-9 rounded-md px-3\"\n      }\n    },\n    defaultVariants: { variant: \"default\", size: \"default\" }\n  }\n)"
+        },
+        {
+          "name": "Responsive Classes",
+          "example": "className=\"text-base sm:text-lg md:text-xl\""
+        },
+        {
+          "name": "Dark Mode Support",
+          "example": "className=\"bg-white dark:bg-[#04282F] text-black dark:text-white\""
+        }
+      ],
+      "colorPalette": {
+        "primary": "#04282F (deep-abyss)",
+        "accent": "#97d8c4 (aqua-light)",
+        "secondary": "#97D9C4",
+        "gold": "#fbbf24",
+        "notes": "See tailwind.config.ts for complete palette"
+      }
+    },
+    "stateManagement": {
+      "patterns": [
+        {
+          "name": "Local State with useState",
+          "usage": "Component-level state",
+          "example": "const [isOpen, setIsOpen] = useState(false);\nconst [data, setData] = useState<Data | null>(null);"
+        },
+        {
+          "name": "Custom Hooks",
+          "usage": "Reusable state logic",
+          "examples": [
+            "useAuth() - Authentication state",
+            "useConversationState() - Conversation management",
+            "useCommunityState() - Community data"
+          ]
+        }
+      ]
+    },
+    "animations": {
+      "library": "framer-motion",
+      "commonPatterns": [
+        {
+          "name": "Fade In",
+          "example": "<motion.div\n  initial={{ opacity: 0, y: 20 }}\n  animate={{ opacity: 1, y: 0 }}\n  transition={{ delay: index * 0.05 }}\n>"
+        },
+        {
+          "name": "Hover Effects",
+          "example": "<motion.div\n  whileHover={{ y: -2 }}\n  whileTap={{ scale: 0.95 }}\n>"
+        }
+      ]
+    },
+    "documentation": {
+      "pattern": "JSDoc comments with usage examples",
+      "example": "/**\n * APP HEADER\n * ==========\n *\n * Reusable header component used across all main app pages.\n * Features responsive layout with search, navigation, and action buttons.\n *\n * Usage:\n * ```tsx\n * <AppHeader\n *   title=\"Discovery\"\n *   subtitle=\"Discover what aligns with your current energy.\"\n *   showSearch={true}\n *   onMenuClick={() => setShowSidebar(true)}\n * />\n * ```\n */"
+    }
+  },
+  "pages": {
+    "structure": {
+      "pattern": "App Router (Next.js 13+)",
+      "fileNaming": "page.tsx in kebab-case directories",
+      "examples": [
+        { "route": "/community/discover", "file": "app/community/discover/page.tsx" },
+        { "route": "/business/[handle]", "file": "app/business/[handle]/page.tsx" }
+      ]
+    },
+    "clientDirective": {
+      "usage": "\"use client\" at top of interactive pages",
+      "example": "\"use client\";\n\nimport { useState, useEffect } from \"react\";\nimport { useRouter } from \"next/navigation\";"
+    },
+    "layout": {
+      "commonStructure": [
+        "Header with navigation and actions",
+        "Main content area with max-width container",
+        "Bottom padding for mobile navigation (pb-28 sm:pb-24)"
+      ],
+      "example": "<div className=\"min-h-screen w-full bg-[#04282F]\">\n  {/* Sticky Header */}\n  <div className=\"sticky top-0 z-50 bg-[#04282F] border-b border-white/10\">\n    {/* Header content */}\n  </div>\n  \n  {/* Main Content */}\n  <div className=\"max-w-6xl mx-auto px-4 py-6 pb-28 sm:pb-24\">\n    {/* Page content */}\n  </div>\n</div>"
+    },
+    "stateManagement": {
+      "pattern": "Local state + custom hooks",
+      "example": "const router = useRouter();\nconst [searchQuery, setSearchQuery] = useState(\"\");\nconst [isLoading, setIsLoading] = useState(true);\nconst { user } = useAuth();"
+    },
+    "dataFetching": {
+      "pattern": "useEffect + fetch for client-side data",
+      "example": "useEffect(() => {\n  const loadData = async () => {\n    try {\n      setIsLoading(true);\n      const response = await fetch('/api/communities/discover');\n      const data = await response.json();\n      if (data.success) {\n        setCommunities(data.communities);\n      }\n    } catch (error) {\n      logger.general.error('Failed to load data:', error);\n    } finally {\n      setIsLoading(false);\n    }\n  };\n  loadData();\n}, [dependencies]);"
+    },
+    "conditionalRendering": {
+      "patterns": [
+        {
+          "name": "Loading State",
+          "example": "if (isLoading) {\n  return <div className=\"animate-spin\">Loading...</div>;\n}"
+        },
+        {
+          "name": "Error State",
+          "example": "if (error) {\n  return <ErrorMessage error={error} />;\n}"
+        },
+        {
+          "name": "Empty State",
+          "example": "if (!data.length) {\n  return <EmptyState message=\"No communities found\" />;\n}"
+        }
+      ]
+    },
+    "metadata": {
+      "pattern": "Export metadata object for SEO",
+      "example": "export const metadata = {\n  title: \"VIBEUP - AI-Empowered Guidance\",\n  description: \"A Human focused AI-empowered guidance and wellness platform\",\n  manifest: \"/manifest.json\"\n};"
+    }
+  },
+  "functions": {
+    "asyncHandling": {
+      "pattern": "async/await with try-catch",
+      "example": "async function fetchData() {\n  try {\n    const result = await apiCall();\n    return result;\n  } catch (error) {\n    logger.error('api', 'Failed to fetch data', error);\n    throw error;\n  }\n}"
+    },
+    "errorHandling": {
+      "approach": "Custom error classes + unified error handler",
+      "errorClasses": [
+        {
+          "name": "ValidationError",
+          "statusCode": 400,
+          "usage": "Request validation failures",
+          "example": "if (!params.query) {\n  throw new ValidationError(\"Query parameter is required\");\n}"
+        },
+        {
+          "name": "AuthenticationError",
+          "statusCode": 401,
+          "usage": "Authentication required",
+          "example": "if (!bearerToken) {\n  throw new AuthenticationError(\"Bearer token required\");\n}"
+        },
+        {
+          "name": "NotFoundError",
+          "statusCode": 404,
+          "usage": "Resource not found",
+          "example": "if (!user) {\n  throw new NotFoundError(\"User\");\n}"
+        },
+        {
+          "name": "ConflictError",
+          "statusCode": 409,
+          "usage": "Duplicate or conflicting resource"
+        },
+        {
+          "name": "RateLimitError",
+          "statusCode": 429,
+          "usage": "Rate limit exceeded"
+        }
+      ],
+      "errorBoundaries": "Let errors bubble up to error boundaries or API error handlers"
+    },
+    "logging": {
+      "system": "Unified logger with categories",
+      "categories": [
+        "auth - Authentication & authorization",
+        "api - API requests/responses",
+        "database - Database operations",
+        "ui - UI interactions & state changes",
+        "ai - AI/Assistant operations",
+        "hooks - React hooks & state management",
+        "general - General application logs"
+      ],
+      "usage": "import { logger } from '@/utils/unified-logger';",
+      "examples": [
+        "logger.api.info(\"Processing request\", { userId, endpoint });",
+        "logger.database.error(\"Query failed\", error);",
+        "logger.hooks.info(\"State updated\", { newState });"
+      ],
+      "configuration": "Environment variables: ENABLE_ALL_LOGGING, ENABLE_CONSOLE_LOGGING, LOG_LEVEL"
+    },
+    "utilities": {
+      "organization": "utils/ directory with subdirectories",
+      "structure": [
+        "utils/general-utils/ - Generic helpers",
+        "utils/auth/ - Auth utilities",
+        "utils/security/ - Security middleware",
+        "utils/api-config/ - API configuration"
+      ],
+      "namingConvention": "camelCase, descriptive verb-noun combinations"
+    }
+  },
+  "apiRoutes": {
+    "structure": {
+      "pattern": "app/api/[resource]/route.ts",
+      "methods": "Named exports: GET, POST, PUT, DELETE",
+      "example": "export async function GET(request: NextRequest) { ... }\nexport async function POST(request: NextRequest) { ... }"
+    },
+    "patterns": [
+      {
+        "name": "Authentication Check",
+        "example": "const supabase = await createServerSupabase();\nconst { data: { user }, error: authError } = await supabase.auth.getUser();\nif (authError || !user) {\n  return NextResponse.json(\n    { success: false, error: \"Authentication required\" },\n    { status: 401 }\n  );\n}"
+      },
+      {
+        "name": "Database Service Usage",
+        "example": "const db = DatabaseService.getInstance(supabase);\nconst result = await db.community.discoverCommunities(filters);"
+      },
+      {
+        "name": "Response Format",
+        "example": "return NextResponse.json({\n  success: true,\n  data: result,\n  pagination: { total, page, has_more }\n});"
+      },
+      {
+        "name": "Error Handling",
+        "example": "try {\n  // ... operation\n} catch (error: unknown) {\n  logger.api.error(\"Operation failed\", error);\n  Sentry.captureException(error, { tags: { api: 'resource' } });\n  return NextResponse.json(\n    { success: false, error: \"Internal server error\" },\n    { status: 500 }\n  );\n}"
+      }
+    ],
+    "queryParams": {
+      "parsing": "const { searchParams } = new URL(request.url);",
+      "example": "const search = searchParams.get('search') || undefined;\nconst limit = parseInt(searchParams.get('limit') || '20');"
+    }
+  },
+  "epics": {
+    "structure": {
+      "pattern": "Feature-based organization with epic numbering",
+      "components": [
+        "Database services in database/services/",
+        "API routes in app/api/",
+        "Types in types/",
+        "Components in components/",
+        "Pages in app/"
+      ]
+    },
+    "examples": [
+      {
+        "epic": "Epic 2 - Enhanced Profiles",
+        "services": ["ProfileService", "ProfileAttributeService", "ConnectionService"],
+        "types": "types/epic2-profile.ts",
+        "apiRoutes": "app/api/profile/",
+        "components": "components/core/profile/"
+      },
+      {
+        "epic": "Epic 3 - Practices & Intentions",
+        "services": ["PracticeService"],
+        "types": "types/practices.ts",
+        "apiRoutes": "app/api/practices/",
+        "components": "components/core/practices/"
+      },
+      {
+        "epic": "Epic 4 - Social Features",
+        "services": [
+          "MessagingService",
+          "SocialDiscoveryService",
+          "NotificationService"
+        ],
+        "types": "types/social.ts",
+        "apiRoutes": "app/api/connections/, app/api/notifications/",
+        "pages": "app/discover/"
+      },
+      {
+        "epic": "Epic 5 - Impact Tracking",
+        "services": ["ImpactService"],
+        "types": "types/impact.ts",
+        "apiRoutes": "app/api/impact/",
+        "components": "components/impact/"
+      },
+      {
+        "epic": "Epic 6 - Business Profiles",
+        "services": ["BusinessProfileService"],
+        "types": "types/business.ts",
+        "apiRoutes": "app/api/business/",
+        "components": "components/business/"
+      },
+      {
+        "epic": "Epic 7 - Communities",
+        "services": ["CommunityService"],
+        "types": "types/community.ts",
+        "apiRoutes": "app/api/communities/",
+        "components": "components/communities/",
+        "pages": "app/community/"
+      }
+    ],
+    "servicePattern": {
+      "inheritance": "Extends BaseDatabaseService",
+      "singleton": "Accessed via DatabaseService.getInstance()",
+      "example": "export class CommunityService extends BaseDatabaseService {\n  async discoverCommunities(filters) { ... }\n  async getCommunity(id) { ... }\n}"
+    }
+  },
+  "global": {
+    "theme": {
+      "system": "Tailwind CSS with custom design tokens",
+      "darkMode": "class-based (default: dark)",
+      "colorSystem": {
+        "primary": {
+          "deepAbyss": "#04282F",
+          "tealDepths": "#083B4A",
+          "tealMystic": "#052A31"
+        },
+        "accent": {
+          "aquaLight": "#97D9C4",
+          "aquaMedium": "#6BC7A8",
+          "goldAccent": "#fbbf24"
+        },
+        "semantic": {
+          "background": "hsl(var(--background))",
+          "foreground": "hsl(var(--foreground))",
+          "primary": "hsl(var(--primary))",
+          "destructive": "hsl(var(--destructive))"
+        }
+      },
+      "typography": {
+        "fontFamily": "Ubuntu (sans), Ubuntu Mono (mono)",
+        "scale": "scale-sm: 16px, scale-md: 20px, scale-lg: 28px"
+      },
+      "spacing": {
+        "container": "max-w-6xl mx-auto",
+        "padding": "px-4 py-6",
+        "mobileNav": "pb-28 sm:pb-24"
+      }
+    },
+    "types": {
+      "organization": "types/ directory, feature-based files",
+      "files": [
+        "types/community.ts - Community types",
+        "types/business.ts - Business types",
+        "types/social.ts - Social features",
+        "types/chat.ts - Chat & conversations",
+        "types/practices.ts - Practices & intentions"
+      ],
+      "patterns": [
+        {
+          "name": "Enum Types",
+          "example": "export type CommunityAccessType = 'public' | 'semi_private' | 'private';"
+        },
+        {
+          "name": "Interface Exports",
+          "example": "export interface Community { id: string; community_name: string; ... }"
+        },
+        {
+          "name": "Type Guards",
+          "example": "export function isMember(viewerContext: ViewerContext | null): boolean {\n  return viewerContext?.is_member ?? false;\n}"
+        }
+      ]
+    },
+    "hooks": {
+      "naming": "use-[feature]-[aspect].ts",
+      "pattern": "Custom hooks for reusable logic",
+      "examples": [
+        {
+          "name": "useAuth",
+          "purpose": "Authentication state management",
+          "returns": "{ user, isAuthenticated, isLoading, isInitialized }"
+        },
+        {
+          "name": "useConversationState",
+          "purpose": "Conversation list management",
+          "returns": "{ conversations, loadConversations, searchConversations, ... }"
+        },
+        {
+          "name": "useCommunityState",
+          "purpose": "Community data and actions"
+        }
+      ],
+      "structure": {
+        "imports": "React hooks, services, utilities",
+        "state": "useState for local state",
+        "effects": "useEffect for side effects",
+        "memoization": "useMemo for expensive computations, useCallback for stable functions",
+        "return": "Object with state, derived values, and functions"
+      }
+    },
+    "database": {
+      "architecture": "Service layer pattern",
+      "mainService": {
+        "name": "DatabaseService",
+        "pattern": "Singleton",
+        "usage": "DatabaseService.getInstance(supabase)",
+        "structure": "Aggregates specialized services"
+      },
+      "serviceCategories": [
+        "users - User management",
+        "profiles - User profiles",
+        "conversations - Chat conversations",
+        "messages - Chat messages",
+        "communities - Community features",
+        "business - Business profiles",
+        "practices - Practices & intentions",
+        "connections - Social connections",
+        "notifications - User notifications"
+      ],
+      "servicePattern": "class XService extends BaseDatabaseService { ... }"
+    },
+    "validation": {
+      "library": "Zod",
+      "usage": "Schema definition for request validation",
+      "example": "const UpdateProfileSchema = z.object({\n  display_name: z.string().min(1).max(100).optional(),\n  bio: z.string().max(500).optional(),\n  location: z.string().max(100).optional()\n});\n\nconst validationResult = UpdateProfileSchema.safeParse(body);\nif (!validationResult.success) {\n  return NextResponse.json({ error: 'Validation failed', details: validationResult.error.issues }, { status: 400 });\n}"
+    },
+    "observability": {
+      "logging": "Unified logger (utils/unified-logger.ts)",
+      "errorTracking": "Sentry (@sentry/nextjs)",
+      "analytics": "Vercel Analytics",
+      "patterns": [
+        "logger.category.level(message, data)",
+        "Sentry.captureException(error, { tags, extra })",
+        "Performance monitoring with Sentry.startSpan()"
+      ]
+    }
+  },
+  "fileNaming": {
+    "conventions": {
+      "components": "PascalCase or kebab-case (CommunityCard.tsx or listing-card.tsx)",
+      "pages": "kebab-case directories + page.tsx",
+      "hooks": "kebab-case with use- prefix (use-auth-state.ts)",
+      "utilities": "kebab-case (unified-logger.ts)",
+      "types": "kebab-case (community.ts)",
+      "services": "kebab-case with -service suffix (community-service.ts)"
+    }
+  },
+  "codeStyle": {
+    "typescript": {
+      "strictness": "Strict mode enabled",
+      "imports": "Grouped: external, types, internal, feature",
+      "exports": "Named exports preferred over default"
+    },
+    "formatting": {
+      "indentation": "2 spaces",
+      "quotes": "Double quotes",
+      "semicolons": "Required",
+      "trailingCommas": "ES5 style"
+    },
+    "organization": {
+      "imports": "External packages → Types → Internal utilities → Feature code",
+      "structure": "Types/interfaces at top → Helper functions → Main component/function"
+    }
+  }
+}

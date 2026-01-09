@@ -1,0 +1,105 @@
+# VIBEUP Development Tracker - Coverage Gates Configuration
+# TDD enforcement and coverage thresholds
+# Edit this file to adjust coverage requirements
+
+version: "1.0"
+enforced: true
+lastCheck: null
+overallStatus: "not-checked"
+
+gates:
+  service-layer:
+    threshold: 90
+    enforced: true
+    currentCoverage: null
+    status: "not-checked"
+    lastChecked: null
+    trend: null
+    history: []
+    
+  api-routes:
+    threshold: 85
+    enforced: true
+    currentCoverage: null
+    status: "not-checked"
+    lastChecked: null
+    trend: null
+    history: []
+    
+  components:
+    threshold: 75
+    enforced: true
+    currentCoverage: null
+    status: "not-checked"
+    lastChecked: null
+    trend: null
+    history: []
+    
+  e2e-critical-paths:
+    threshold: 100
+    enforced: true
+    currentCoverage: null
+    status: "not-checked"
+    lastChecked: null
+    trend: null
+    paths:
+      - "signup flow"
+      - "practice logging"
+      - "connection request"
+      - "payment flow"
+      - "profile creation"
+    history: []
+    
+  integration-tests:
+    threshold: 80
+    enforced: true
+    currentCoverage: null
+    status: "not-checked"
+    lastChecked: null
+    trend: null
+    history: []
+    
+  utils-helpers:
+    threshold: 95
+    enforced: true
+    currentCoverage: null
+    status: "not-checked"
+    lastChecked: null
+    trend: null
+    history: []
+
+epicOverrides: {}
+
+featureOverrides: {}
+
+exemptions:
+  - pattern: "**/*.d.ts"
+    reason: "TypeScript declaration files"
+    approvedBy: "system"
+    approvedAt: "2025-12-22T00:00:00Z"
+    
+  - pattern: "**/types.ts"
+    reason: "Type definition files"
+    approvedBy: "system"
+    approvedAt: "2025-12-22T00:00:00Z"
+    
+  - pattern: "**/*.config.{js,ts,mjs}"
+    reason: "Configuration files"
+    approvedBy: "system"
+    approvedAt: "2025-12-22T00:00:00Z"
+
+tddWorkflow:
+  requireTestsFirst: true
+  redGreenRefactorTracking: true
+  minimumTestsPerEndpoint: 3
+  minimumTestsPerService: 5
+  minimumTestsPerComponent: 2
+
+reporting:
+  reportOnComplete: true
+  reportFormat: "json"
+  reportDirectory: ".tracker/coverage-reports/"
+  trendTracking: true
+  alertOnDecrease: true
+  decreaseThreshold: 2
+

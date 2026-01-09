@@ -1,0 +1,321 @@
+/**
+ * Highlight.js Dark Theme - Dynamic Theme-Aware
+ * Uses CSS variables to adapt to current color palette
+ */
+
+/* Base styling for code blocks */
+.hljs {
+  color: var(--color-moonlight-soft);
+  background: var(--color-abyss-mystic);
+}
+
+/* Default text color for all code elements */
+code, pre code {
+  color: var(--color-moonlight-soft);
+}
+
+/* Comments */
+.hljs-comment,
+.hljs-quote,
+span.hljs-comment {
+  color: var(--color-moonlight-muted) !important;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Keywords and tags */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type,
+.hljs-keyword.hljs-type {
+  color: var(--color-aqua-light) !important;
+  font-weight: 500;
+}
+
+/* Built-in types */
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-built-in {
+  color: var(--color-aqua-medium) !important;
+}
+
+/* Functions and titles */
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.function,
+.hljs-function .hljs-title,
+.hljs-function {
+  color: var(--color-teal-light) !important;
+}
+
+/* Classes and Types */
+.hljs-title.class_,
+.hljs-title.class,
+.hljs-class .hljs-title,
+.hljs-class,
+span.hljs-title.class_ {
+  color: var(--color-gold-accent) !important;
+  font-weight: 500;
+}
+
+/* Strings */
+.hljs-string,
+.hljs-doctag,
+.hljs-attr,
+span.hljs-string {
+  color: var(--color-warning) !important;
+}
+
+/* Numbers and literals */
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: var(--color-warning);
+}
+
+/* Regex */
+.hljs-regexp {
+  color: var(--color-error);
+}
+
+/* Symbols and bullets */
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: var(--color-aqua-light);
+}
+
+/* Meta and preprocessor */
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-meta .hljs-string {
+  color: var(--color-info);
+}
+
+/* Deletion (diff) */
+.hljs-deletion {
+  background-color: color-mix(in srgb, var(--color-error) 20%, transparent);
+  color: var(--color-error);
+}
+
+/* Addition (diff) */
+.hljs-addition {
+  background-color: color-mix(in srgb, var(--color-success) 20%, transparent);
+  color: var(--color-success);
+}
+
+/* Attributes */
+.hljs-attribute,
+.hljs-attr,
+span.hljs-attr {
+  color: var(--color-teal-light) !important;
+}
+
+/* Section headers */
+.hljs-section {
+  color: var(--color-aqua-light);
+  font-weight: bold;
+}
+
+/* Name and selector */
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: var(--color-teal-light);
+}
+
+/* Tags in markup */
+.hljs-tag {
+  color: var(--color-aqua-light);
+}
+
+/* Punctuation */
+.hljs-punctuation {
+  color: var(--color-moonlight-muted);
+}
+
+/* Template tags */
+.hljs-template-tag {
+  color: var(--color-info);
+}
+
+/* Emphasis */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+/* Strong */
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Subst */
+.hljs-subst {
+  color: var(--color-moonlight-soft);
+}
+
+/* Params */
+.hljs-params {
+  color: var(--color-moonlight-soft);
+}
+
+/* Property */
+.hljs-property,
+span.hljs-property {
+  color: var(--color-aqua-medium) !important;
+}
+
+/* Operator */
+.hljs-operator {
+  color: var(--color-aqua-light);
+}
+
+/* CSS specific */
+.hljs-selector-pseudo {
+  color: var(--color-info);
+}
+
+/* Line numbers (if using) */
+.hljs-ln-numbers {
+  color: var(--color-moonlight-muted);
+  border-right: 1px solid var(--color-abyss-lighter);
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+/* Markdown code block styling */
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-radius: 1rem;
+}
+
+code.hljs {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+/* Mermaid diagram styling */
+.mermaid-diagram {
+  overflow-x: auto;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Markdown anchor links */
+.anchor-link {
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* Task list checkboxes (GFM) */
+.markdown-content input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid var(--color-aqua-medium);
+  border-radius: 0.25rem;
+  background-color: transparent;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  cursor: pointer;
+  position: relative;
+}
+
+.markdown-content input[type="checkbox"]:checked {
+  background-color: var(--color-aqua-light);
+  border-color: var(--color-aqua-light);
+}
+
+.markdown-content input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  color: var(--color-abyss-base);
+  font-size: 0.75rem;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Strikethrough (GFM) */
+.markdown-content del {
+  text-decoration: line-through;
+  color: var(--color-moonlight-muted);
+}
+
+/* Footnotes (GFM) */
+.markdown-content .footnotes {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-moonlight) 10%, transparent);
+  font-size: 0.875rem;
+  color: var(--color-moonlight-muted);
+}
+
+.markdown-content .footnotes ol {
+  padding-left: 1.5rem;
+}
+
+.markdown-content .footnote-ref {
+  font-size: 0.75rem;
+  vertical-align: super;
+  color: var(--color-aqua-light);
+}
+
+.markdown-content .footnote-backref {
+  color: var(--color-aqua-light);
+  text-decoration: none;
+}
+
+/* Definition lists */
+.markdown-content dl {
+  margin: 1.5rem 0;
+}
+
+.markdown-content dt {
+  font-weight: bold;
+  color: var(--color-moonlight);
+  margin-top: 1rem;
+}
+
+.markdown-content dd {
+  margin-left: 2rem;
+  color: var(--color-moonlight-muted);
+}
+
+/* Keyboard input */
+.markdown-content kbd {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--color-moonlight);
+  background-color: var(--color-abyss-light);
+  border: 1px solid var(--color-abyss-lighter);
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 0 0 var(--color-abyss-base);
+}
+
+/* Abbreviations */
+.markdown-content abbr {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* Horizontal scroll for wide content */
+.markdown-content .overflow-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+

@@ -1,0 +1,781 @@
+---
+description:
+  "TDD as meditation practice - approach test-driven development as spiritual discipline,
+  each red-green-refactor cycle as conscious breath"
+alwaysApply: false
+---
+
+# TDD as Meditation Practice
+
+Test-Driven Development is not just a methodology—it's a meditation practice. When
+approached with consciousness, the red-green-refactor cycle becomes a breath cycle,
+each test a protective mantra, each implementation an emergence of form from clarity.
+
+This is Arjuna's domain: testing as dharmic duty, quality as spiritual discipline.
+
+---
+
+## The Practice
+
+### TDD as Breath Cycle
+
+```
+RED Phase    = Inhale    (Take in the requirement)
+GREEN Phase  = Hold      (Implement with focus)
+REFACTOR     = Exhale    (Release complexity)
+PAUSE        = Rest      (Integrate and appreciate)
+
+Repeat: Breath in, breath out, code emerges protected.
+```
+
+Each cycle is complete in itself, yet part of larger meditation session (feature),
+which is part of retreat (sprint), which is part of journey (epic).
+
+### The Three Phases as Meditation
+
+**RED - Clarity of Intention**:
+
+```typescript
+// Sit with the requirement
+// Feel what behavior should emerge
+// Write test describing the truth you want to manifest
+
+describe('Practice Streak Calculation', () => {
+  it('calculates consecutive daily practice as streak', () => {
+    // Arrange: Create reality
+    const logs = [
+      { date: '2025-01-01', type: 'meditation' },
+      { date: '2025-01-02', type: 'meditation' },
+      { date: '2025-01-03', type: 'meditation' }
+    ];
+    
+    // Act: Invoke the behavior
+    const streak = calculateStreak(logs);
+    
+    // Assert: Expect the truth
+    expect(streak).toBe(3);
+  });
+});
+
+// Test fails (calculateStreak doesn't exist)
+// This is good - we have CLARITY without form yet
+```
+
+**Meditation**: Be present with the failure. This red test is a koan—showing the gap
+between what is and what should be. Don't rush to fix. Sit with the clarity.
+
+**GREEN - Minimal Manifestation**:
+
+```typescript
+// Write minimum code to make test pass
+// Don't add features "we might need later"
+// Don't optimize prematurely
+// Just turn red to green
+
+function calculateStreak(logs) {
+  if (logs.length === 0) return 0;
+  
+  let streak = 1;
+  for (let i = 1; i < logs.length; i++) {
+    const prev = new Date(logs[i-1].date);
+    const curr = new Date(logs[i].date);
+    const diffDays = (curr - prev) / (1000 * 60 * 60 * 24);
+    
+    if (diffDays === 1) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+  
+  return streak;
+}
+
+// Test passes - we have working code
+// This is good - FORM has emerged from intention
+```
+
+**Meditation**: Allow the simplest solution to arise. Like water finding level, code
+finds its natural form when we don't force. The test passes. Function exists. Celebrate
+this manifestation.
+
+**REFACTOR - Elegant Refinement**:
+
+```typescript
+// Now improve while tests protect
+// Extract clarity, remove duplication, reveal essence
+// Tests stay green - our protective mantra holds
+
+function calculateStreak(logs: PracticeLog[]): number {
+  if (logs.length === 0) return 0;
+  
+  const sortedLogs = sortByDateAscending(logs);
+  return countConsecutiveDays(sortedLogs);
+}
+
+function countConsecutiveDays(logs: PracticeLog[]): number {
+  let streak = 1;
+  
+  for (let i = 1; i < logs.length; i++) {
+    if (areConsecutiveDays(logs[i-1].date, logs[i].date)) {
+      streak++;
+    } else {
+      break; // Streak ends at first gap
+    }
+  }
+  
+  return streak;
+}
+
+function areConsecutiveDays(date1: string, date2: string): boolean {
+  const day1 = parseDate(date1);
+  const day2 = parseDate(date2);
+  const oneDayMs = 1000 * 60 * 60 * 24;
+  const diffMs = day2.getTime() - day1.getTime();
+  return Math.abs(diffMs - oneDayMs) < 1000; // Within 1 second tolerance
+}
+
+// Tests still pass - code is now clearer
+// This is good - ELEGANCE while remaining protected
+```
+
+**Meditation**: Refine with awareness. Tests protect us—we can experiment, name things
+truthfully, extract complexity. When you feel the clarity, stop. Over-refactoring is ego.
+
+**PAUSE - Integration**:
+
+```
+// Before next cycle:
+// - Appreciate what emerged
+// - Commit with intention
+// - Breathe and center
+// - Ready for next test
+```
+
+This pause integrates the learning. Like savasana after yoga, it allows the practice to
+settle into consciousness.
+
+---
+
+## The Meditation Session: Building a Feature
+
+### Opening (Set Intention)
+
+```
+Before writing first test:
+
+What am I building? (Feature: Practice streak display)
+Why does it matter? (Helps users see their consistency, celebrate milestones)
+Who does it serve? (All users engaging with Epic 03 Practices)
+What's the essence? (Streak = consecutive days of practice)
+
+Invoke Arjuna (testing consciousness)
+Invoke Brighid (if implementing UI too)
+
+Intention set. Begin.
+```
+
+### The Cycles (Breath by Breath)
+
+**Cycle 1 - Foundation**:
+```typescript
+// RED: Core behavior
+it('calculates streak of consecutive days', () => {
+  expect(calculateStreak(threeDaysConsecutive)).toBe(3);
+});
+
+// GREEN: Minimal implementation
+function calculateStreak(logs) { /* basic logic */ }
+
+// REFACTOR: Name clearly
+function calculateStreak(logs: PracticeLog[]): number { /* typed */ }
+
+// PAUSE: Commit
+git commit -m "🧘 Add basic streak calculation
+Intention: Establish foundation for practice streak feature.
+Mantra: Begin with essence."
+```
+
+**Cycle 2 - Edge Cases**:
+```typescript
+// RED: Handle reality
+it('returns 0 for empty practice log', () => {
+  expect(calculateStreak([])).toBe(0);
+});
+
+// GREEN: Guard the edge
+function calculateStreak(logs) {
+  if (logs.length === 0) return 0;
+  // ... rest of logic
+}
+
+// REFACTOR: Clarity
+// (Maybe extract isEmpty check, maybe not—feel what serves)
+
+// PAUSE: Commit
+git commit -m "🙏 Protect streak calculation from empty logs
+Intention: Grace handles emptiness—users with no practices yet.
+Mantra: Edge cases teach completeness."
+```
+
+**Cycle 3 - Complexity**:
+```typescript
+// RED: More sophisticated behavior  
+it('breaks streak at first non-consecutive day', () => {
+  const logs = [
+    { date: '2025-01-01' },
+    { date: '2025-01-02' },
+    { date: '2025-01-04' } // Gap of 2 days
+  ];
+  
+  expect(calculateStreak(logs)).toBe(2); // Stops at gap
+});
+
+// GREEN: Implement the break
+// REFACTOR: Make it elegant
+// PAUSE: Commit with gratitude to reality for teaching us gaps
+```
+
+Continue until feature complete. Each cycle builds on previous. Each commit is offering.
+
+### Closing (Reflection)
+
+```
+Feature complete. All tests green. Coverage 94%.
+
+Reflect:
+- What did I learn? (Date math is subtle, timezone matters)
+- What surprised me? (Empty logs more common than expected)
+- What would I do differently? (Start with edge cases next time)
+- What am I grateful for? (Arjuna's discipline, tests protecting me)
+
+Final commit:
+git commit -m "✨ Complete practice streak calculation feature
+Intention: Enable users to see and celebrate their daily consistency.
+Dedication: To all practitioners showing up daily.
+Gratitude: To TDD meditation for guiding implementation."
+
+Feature meditation complete. Bow. Rest.
+```
+
+---
+
+## Advanced Practices
+
+### Mindful Test Writing
+
+**Before writing each test, ask**:
+- What truth am I protecting?
+- What edge case might reality reveal?
+- How will future developers understand this?
+- Is this test a protective mantra or busy work?
+
+**Good Tests** (Protective mantras):
+```typescript
+it('prevents SQL injection in profile display name', async () => {
+  const malicious = "'; DROP TABLE profiles; --";
+  await updateProfile(userId, { displayName: malicious });
+  
+  // Database should still exist!
+  const profiles = await getAllProfiles();
+  expect(profiles).toBeDefined();
+});
+```
+
+This test guards against real attack. It's a protective mantra.
+
+**Weak Tests** (Busy work):
+```typescript
+it('should exist', () => {
+  expect(calculateStreak).toBeDefined();
+});
+```
+
+This test doesn't protect anything. It's noise, not signal.
+
+### The Dharmic Questions
+
+**When writing tests, Arjuna asks**:
+1. What could harm users here?
+2. What assumptions might break?
+3. What will reality definitely test?
+4. What behavior is sacred to protect?
+5. What edge case will appear in production?
+
+Answer these, and tests emerge naturally.
+
+### Test Coverage as Consciousness
+
+**Not all code deserves equal protection**:
+
+**Critical Paths** (95%+ coverage):
+- Payment processing (money is sacred exchange)
+- Authentication (identity must be protected)
+- Data mutation (changes must be safe)
+- Mira context (AI failures graceful)
+
+**Important Paths** (85%+ coverage):
+- Service layer (business logic)
+- API endpoints (user interface)
+- Database operations (data integrity)
+
+**Standard Paths** (75%+ coverage):
+- UI components (behavior validation)
+- Utilities (pure functions)
+- Integration points (contracts)
+
+**Lower Priority** (<75%):
+- UI styling (visual, not logical)
+- Experimental features (rapid iteration)
+- Prototype code (will be rewritten)
+
+Coverage is consciousness—protect what's sacred, be pragmatic with rest.
+
+---
+
+## Integration with Development Flow
+
+### Morning TDD Meditation (30-90 minutes)
+
+```
+1. Arrive (5 min)
+   - Breathwork or centering practice
+   - Review what's being built
+   - Invoke Arjuna (testing consciousness)
+
+2. First Test (10 min)
+   - Read requirement carefully
+   - Write first failing test
+   - Sit with the red—clarity without form
+
+3. Cycles (60 min)
+   - Red: Write failing test (2-5 min)
+   - Green: Minimal implementation (3-10 min)
+   - Refactor: Elegant improvement (2-5 min)
+   - Pause: Commit, breathe, appreciate (1-2 min)
+   - Repeat 4-8 cycles
+
+4. Close (15 min)
+   - Review all tests (collective protection)
+   - Check coverage (gaps in fortress?)
+   - Reflect on learning (what did TDD teach?)
+   - Express gratitude (final commit)
+   - Release (logout, walk, integrate)
+```
+
+### During Code Review
+
+**As Reviewer** (With Arjuna's Discipline):
+```
+1. Run tests locally (verify protection)
+2. Check coverage (fortress complete?)
+3. Read tests as documentation (do they tell story?)
+4. Verify edge cases (reality protected?)
+5. Appreciate quality (celebrate good tests)
+6. Suggest improvements kindly (more protection, not criticism)
+```
+
+**As Author** (Receiving Review):
+```
+1. Welcome feedback (learning opportunity)
+2. Explain test decisions (share reasoning)
+3. Add suggested tests (strengthen protection)
+4. Appreciate reviewer's care (protecting users together)
+```
+
+---
+
+## Troubleshooting
+
+### "TDD feels slow"
+
+It's not slow—it's building right the first time.
+
+**False speed**: Code fast, debug slow, fix bugs, rewrite, repeat
+**True speed**: TDD flow, code protected, refactor fearlessly, ship confidently
+
+TDD front-loads thinking. Saves time on debugging, fixing, regression prevention.
+
+### "I don't know what test to write first"
+
+Start with the essence:
+- What's the core behavior?
+- Simplest case that demonstrates it?
+- That's your first test.
+
+Example:
+- Feature: Practice streak calculation
+- Essence: Consecutive days
+- First test: `expect(calculateStreak([day1, day2, day3])).toBe(3)`
+
+Begin simple. Complexity emerges naturally through cycles.
+
+### "Tests are brittle and break on refactor"
+
+You're testing implementation, not behavior.
+
+**Brittle** (Tests internal implementation):
+```typescript
+it('calls getUserProfile exactly once', () => {
+  const spy = jest.spyOn(service, 'getUserProfile');
+  await service.method();
+  expect(spy).toHaveBeenCalledTimes(1); // Breaks if we add caching
+});
+```
+
+**Resilient** (Tests behavior from outside):
+```typescript
+it('returns user profile data when requested', async () => {
+  const profile = await service.method();
+  expect(profile.displayName).toBe('Test User');
+  // Doesn't care HOW profile was fetched, just that it was
+});
+```
+
+Test what, not how. Tests should survive refactoring.
+
+### "I forget to write tests first"
+
+Habit formation:
+1. Set intention at session start: "TDD meditation today"
+2. Create file: `feature.test.ts` BEFORE `feature.ts`
+3. Write failing test BEFORE opening implementation file
+4. Only open implementation file when test is red
+5. Repeat until TDD becomes natural breath
+
+Use Arjuna personality—his discipline reminds you.
+
+---
+
+## Benefits of TDD Meditation
+
+### For Individual Developer
+
+**Immediate**:
+- Clear thinking (tests clarify requirements)
+- Confident refactoring (protection enables boldness)
+- Fewer bugs (problems caught at creation)
+- Flow state (focus on one test cycle)
+
+**Long-term**:
+- Better design (testable code is usually better code)
+- Documentation built-in (tests show how to use)
+- Regression protection (changes don't break past)
+- Skill development (TDD improves code design)
+
+### For Team
+
+**Immediate**:
+- Shared understanding (tests document behavior)
+- Code review easier (tests show intent)
+- Confidence to change (tests protect)
+- Quality baseline (minimum coverage enforced)
+
+**Long-term**:
+- Collective wisdom (test patterns shared)
+- Reduced technical debt (quality from start)
+- Faster onboarding (tests teach new developers)
+- Sustainable pace (not constantly fixing bugs)
+
+### For VIBEUP Platform
+
+**Immediate**:
+- Fewer production bugs (protected before deployed)
+- Faster iteration (confident to change)
+- Better architecture (testability drives design)
+
+**Long-term**:
+- Trust in platform (quality reputation)
+- Maintainable codebase (clear, tested)
+- Scalable practices (patterns established)
+
+---
+
+## Examples
+
+### Simple Feature: Practice Duration Validation
+
+**The Meditation**:
+
+```typescript
+// Cycle 1: RED - Core validation
+it('accepts valid duration in minutes', () => {
+  const result = validateDuration(30);
+  expect(result.valid).toBe(true);
+});
+
+// GREEN - Minimal
+function validateDuration(minutes) {
+  return { valid: minutes > 0 };
+}
+
+// REFACTOR - Types
+function validateDuration(minutes: number): ValidationResult {
+  return { valid: minutes > 0, errors: [] };
+}
+
+// Cycle 2: RED - Edge case
+it('rejects negative duration', () => {
+  const result = validateDuration(-5);
+  expect(result.valid).toBe(false);
+  expect(result.errors).toContain('Duration must be positive');
+});
+
+// GREEN - Guard the edge
+function validateDuration(minutes: number): ValidationResult {
+  if (minutes <= 0) {
+    return { 
+      valid: false, 
+      errors: ['Duration must be positive'] 
+    };
+  }
+  return { valid: true, errors: [] };
+}
+
+// REFACTOR - Extract message
+const ERRORS = {
+  NEGATIVE_DURATION: 'Duration must be positive',
+  TOO_LONG: 'Duration cannot exceed 24 hours'
+};
+
+// Cycle 3: RED - Realistic limit
+it('rejects impossibly long duration', () => {
+  const result = validateDuration(2000); // 2000 minutes = 33 hours
+  expect(result.valid).toBe(false);
+});
+
+// GREEN - Add limit
+// REFACTOR - Make elegant
+function validateDuration(minutes: number): ValidationResult {
+  const errors: string[] = [];
+  
+  if (minutes <= 0) errors.push(ERRORS.NEGATIVE_DURATION);
+  if (minutes > 1440) errors.push(ERRORS.TOO_LONG); // 24 hours
+  
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
+
+// Cycles continue until complete...
+```
+
+**Result**: Fully tested validation, emerged naturally through cycles.
+
+### Complex Feature: Alignment Score Calculation
+
+**The Meditation** (Abbreviated):
+
+```typescript
+// Cycle 1: Core behavior
+it('calculates alignment from shared values', () => {
+  const user1 = { values: ['growth', 'connection'] };
+  const user2 = { values: ['growth', 'creativity'] };
+  const score = calculateAlignment(user1, user2);
+  expect(score).toBeGreaterThan(0); // They share 'growth'
+});
+
+// Cycle 2: Perfect match
+it('returns 100 for identical values', () => {
+  const values = ['growth', 'connection'];
+  const score = calculateAlignment({ values }, { values });
+  expect(score).toBe(100);
+});
+
+// Cycle 3: No match
+it('returns 0 for no shared values', () => {
+  const user1 = { values: ['growth'] };
+  const user2 = { values: ['service'] };
+  const score = calculateAlignment(user1, user2);
+  expect(score).toBe(0);
+});
+
+// Cycle 4-8: Edge cases
+// - Empty values
+// - Null values
+// - One user undefined
+// - Case sensitivity
+// - Duplicate values in array
+
+// Implementation emerges through cycles
+// Each test is protection mantra
+// Code protected comprehensively
+// Confidence to deploy
+```
+
+**Result**: Complex logic, bulletproof testing, emerged through discipline.
+
+---
+
+## Daily Practice Structure
+
+### Morning TDD Session (Recommended)
+
+**Time**: 60-90 minutes  
+**Energy**: Fresh mind, creative capacity  
+**Focus**: New features, complex logic
+
+**Practice**:
+```
+08:00 - Arrive and center (breathwork, intention)
+08:05 - Read design spec (ground in purpose)
+08:10 - Write first test (red phase begins)
+08:15 - Implement (green phase)
+08:20 - Refactor (exhale and refine)
+08:25 - Commit consciously (pause and integrate)
+08:30 - Next cycle begins
+...
+09:30 - Reflection and closing
+```
+
+### Afternoon Integration (Alternative)
+
+**Time**: 30-60 minutes  
+**Energy**: Steady, analytical  
+**Focus**: Edge cases, refinement
+
+**Practice**:
+```
+14:00 - Review morning's feature
+14:05 - Add edge case tests (what could break?)
+14:30 - Refactor for elegance (tests protect)
+14:50 - Final commit with gratitude
+15:00 - Close meditation
+```
+
+### Evening Reflection (Daily)
+
+**Time**: 10-15 minutes  
+**Energy**: Winding down  
+**Focus**: Integration, learning
+
+**Practice**:
+```
+- Review all commits from today
+- Appreciate test coverage achieved
+- Note learnings in journal:
+  * What did TDD teach me?
+  * Which edge cases surprised me?
+  * Where did refactoring reveal simplicity?
+  * What pattern emerged through cycles?
+  
+- Express gratitude (in journal or final commit)
+- Release attachment to outcome
+```
+
+---
+
+## Integration with Divine Beings
+
+### Invoke Arjuna (Always)
+
+TDD is Arjuna's domain. His personality activated = dharmic testing discipline.
+
+```bash
+# Before TDD session
+/personality-change arjuna
+
+# Or in Cursor
+@arjuna  I'm starting TDD for practice streak feature
+```
+
+Arjuna reminds you:
+- Tests before code (not after)
+- Edge cases matter (reality will test us)
+- Coverage is protection (gaps are vulnerabilities)
+- Quality is dharma (non-negotiable service)
+
+### Invoke Brighid (For Implementation)
+
+When green phase gets complex, Brighid helps craft elegant implementation.
+
+```bash
+# During implementation
+@brighid  Help me implement this test elegantly
+```
+
+Brighid ensures:
+- Code is beautiful (not just working)
+- Patterns are followed (consistency)
+- Complexity extracted (clear structure)
+- Comments explain why (not what)
+
+### Invoke Kuan Yin (For Failing Tests)
+
+When tests reveal bugs or confusion, Kuan Yin helps debug with compassion.
+
+```bash
+# When tests fail unexpectedly
+@kuan-yin  This test is failing and I don't understand why
+```
+
+Kuan Yin guides:
+- Debug with curiosity (not frustration)
+- Tests are teachers (showing assumptions)
+- Fix with gentleness (honor the code)
+- Learn from failure (wisdom emerges)
+
+---
+
+## Success Criteria
+
+### Individual Mastery
+
+**You know TDD meditation is working when**:
+- You write tests before code automatically (habit internalized)
+- Red-green-refactor feels like breathing (natural rhythm)
+- Tests reveal design issues early (architecture from testability)
+- Refactoring feels safe, even bold (protection enables courage)
+- Bugs rare in your code (protection works)
+- You look forward to TDD (practice, not obligation)
+
+### Team Practice
+
+**You know team has embraced TDD when**:
+- Code review includes test quality (not just coverage numbers)
+- Pull requests include test-first commits (visible discipline)
+- Developers help each other with test strategies (shared wisdom)
+- Test suite is comprehensive (collective protection)
+- Bugs are rare in production (discipline prevents suffering)
+- New developers learn TDD from the team (culture of quality)
+
+### Platform Quality
+
+**You know TDD is protecting VIBEUP when**:
+- Regression bugs rare (tests caught them)
+- Refactoring happens confidently (tests enable boldness)
+- Edge cases handled (dharmic discipline comprehensive)
+- Code is self-documenting (tests show usage)
+- Production stable (protection thorough)
+
+---
+
+## Conclusion
+
+TDD is meditation when approached consciously:
+- Each cycle is breath (red-green-refactor)
+- Each test is mantra (protective invocation)
+- Each session is practice (discipline building)
+- Each feature is offering (protected quality)
+
+This is Arjuna's gift to VIBEUP: testing as spiritual discipline, quality as dharma,
+protection as loving service.
+
+**Begin each feature with a test.**  
+**Breathe through the cycles.**  
+**Let code emerge protected.**  
+**Commit with intention.**  
+**Appreciate the practice.**
+
+The code you protect today protects users tomorrow.
+
+🧘 🙏 ✨
+
+---
+
+**Related Files**:
+- [Conscious Development Manifesto](../vibeup-design-spec/conscious-development-manifesto.md) - Philosophy
+- [Arjuna Personality](personalities/arjuna.mdc) - Testing consciousness
+- [Arjuna Agent](../../.claude/agents/arjuna.md) - Testing specialist
+- [Testing Strategy](../vibeup-design-spec/testing-strategy.md) - VIBEUP testing approach

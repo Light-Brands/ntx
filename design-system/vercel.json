@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd design-system-v2 && npm install && npm run build",
+  "devCommand": "cd design-system-v2 && npm run dev",
+  "installCommand": "cd design-system-v2 && npm install",
+  "outputDirectory": "design-system-v2/dist",
+  "framework": null,
+  "public": true,
+  "github": {
+    "silent": false
+  }
+}

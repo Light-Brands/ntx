@@ -1,0 +1,573 @@
+---
+description: Modern web application design system - mobile-first, component-driven, accessible
+alwaysApply: false
+---
+
+# Design System Standards
+
+This design system ensures consistent, accessible, mobile-first UI development across all features.
+
+## Mobile-First & Native-App Feel
+
+Everything must feel like a native mobile app and work perfectly on screens <640px.
+
+### Responsive Design Rules
+
+- **Mobile-first approach**: Design for <640px first, then enhance with `sm:`, `md:`, `lg:`
+- **Tailwind breakpoints**: Default (<640px) → sm (≥640px) → md (≥768px) → lg (≥1024px)
+- **Touch-friendly targets**: All interactive elements minimum 44×44px tappable area
+- **Consistent spacing rhythm**: `px-3 sm:px-4` for horizontal, `pb-28 sm:pb-24` for bottom clearance
+- **Bottom-sheet modals**: Use bottom sheets on mobile, centered modals on desktop
+- **No fixed widths**: Never use fixed pixel widths that could exceed viewport
+
+```typescript
+// ✅ CORRECT: Mobile-first responsive
+className="text-sm sm:text-base md:text-lg"
+className="px-3 sm:px-4 md:px-6"
+className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+
+// ✅ CORRECT: Touch-friendly button
+className="w-9 h-9 sm:w-10 sm:h-10 p-3 min-h-[44px] min-w-[44px]"
+
+// ✅ CORRECT: Responsive width
+className="w-full max-w-md sm:w-96"
+```
+
+### Interaction States
+
+All interactive elements must have visible focus states and appropriate feedback:
+
+```typescript
+className={cn(
+  "transition-all duration-200",
+  // Focus state (keyboard navigation)
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+  // Hover state (desktop)
+  "hover:bg-accent/10 hover:border-primary/30",
+  // Active/tap state (mobile)
+  "active:scale-95 active:bg-accent/5"
+)}
+
+// With framer-motion
+whileHover={{ y: -2 }}
+whileTap={{ scale: 0.95 }}
+```
+
+## Component Architecture
+
+### Naming Convention
+
+**Pattern**: `FeatureName` + `ComponentType`
+
+```typescript
+// ✅ GOOD: Descriptive compound names
+CommunityCard.tsx
+UserProfileAvatar.tsx
+SearchFilterBar.tsx
+NotificationList.tsx
+
+// UI primitives use single names
+Button.tsx
+Card.tsx
+Input.tsx
+```
+
+### Props Interface Pattern
+
+Always define explicit interfaces with JSDoc comments:
+
+```typescript
+interface ComponentNameProps {
+  /** Primary data object */
+  data: DataType;
+
+  /** Optional callback when item is clicked */
+  onClick?: () => void;
+
+  /** Show loading state */
+  isLoading?: boolean;
+
+  /** Additional CSS classes */
+  className?: string;
+}
+
+// Prop ordering: Required → Optional → className last
+```
+
+**Naming conventions:**
+- Callbacks: `on` prefix (onClick, onSubmit, onComplete)
+- Booleans: `show`, `is`, `has` prefix (showSearch, isActive, hasError)
+- Style props: `className` (always optional)
+
+### Component Composition Patterns
+
+**Pattern 1: forwardRef (Base UI Components)**
+
+Use for low-level UI primitives that need ref forwarding:
+
+```typescript
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
+```
+
+**Pattern 2: Functional Components (Feature Components)**
+
+Use for feature-specific components with business logic:
+
+```typescript
+export function FeatureCard({
+  data,
+  onClick,
+  index = 0
+}: FeatureCardProps) {
+  const router = useRouter();
+  const { user } = useAuth();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+    >
+      {/* Component content */}
+    </motion.div>
+  );
+}
+```
+
+### Component Documentation
+
+Always include JSDoc block with usage example:
+
+````typescript
+/**
+ * FEATURE CARD
+ * ===========
+ *
+ * Reusable card component for displaying feature items.
+ * Supports animations, hover effects, and click handling.
+ *
+ * @example
+ * ```tsx
+ * <FeatureCard
+ *   data={item}
+ *   onClick={() => router.push(`/item/${item.id}`)}
+ *   index={0}
+ * />
+ * ```
+ */
+export function FeatureCard({ data, onClick }: FeatureCardProps) {
+  // ...
+}
+````
+
+## Styling with Tailwind
+
+### Core Utility: cn()
+
+Use for conditional class composition:
+
+```typescript
+import { cn } from "@/lib/utils";
+
+className={cn(
+  "rounded-lg bg-background p-4",
+  "hover:bg-muted/50 transition-colors",
+  { "border-primary": isActive },
+  className  // Allow prop overrides
+)}
+```
+
+### Variant Pattern with CVA
+
+Use Class Variance Authority for component variants:
+
+```typescript
+import { cva } from "class-variance-authority";
+
+const buttonVariants = cva(
+  // Base styles
+  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        outline: "border border-input bg-background hover:bg-accent",
+        ghost: "hover:bg-accent hover:text-accent-foreground"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 px-3",
+        lg: "h-11 px-8"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default"
+    }
+  }
+);
+```
+
+### Dark Mode Pattern
+
+Always provide dark mode variants (default to dark):
+
+```typescript
+className="bg-white dark:bg-background text-black dark:text-foreground"
+className="border-gray-200 dark:border-white/10"
+className="hover:bg-gray-100 dark:hover:bg-white/5"
+```
+
+## Page Structure
+
+### App Router Pattern (Next.js 13+)
+
+```typescript
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { logger } from "@/utils/logger";
+
+export default function PageName() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<DataType[]>([]);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/endpoint');
+        const result = await response.json();
+        
+        if (result.success) {
+          setData(result.data);
+        }
+      } catch (error) {
+        logger.error('Failed to load data', { error });
+        setError(error as Error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  // Loading state
+  if (isLoading) return <LoadingSpinner />;
+
+  // Error state
+  if (error) return <ErrorMessage error={error} />;
+
+  // Empty state
+  if (!data.length) return <EmptyState />;
+
+  // Main render
+  return (
+    <div className="min-h-screen w-full">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50 border-b">
+        <header />
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 py-6 pb-28 sm:pb-24">
+        {/* Content */}
+      </div>
+    </div>
+  );
+}
+```
+
+### Standard Page Layout
+
+```typescript
+// Container pattern
+className="max-w-6xl mx-auto"
+
+// Standard padding
+className="px-4 py-6"
+
+// Mobile navigation clearance (ALWAYS include)
+className="pb-28 sm:pb-24"
+
+// Sticky header
+className="sticky top-0 z-50 border-b"
+```
+
+## Animation Patterns
+
+Use framer-motion for native-feeling interactions:
+
+```typescript
+// Fade in (list items)
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: index * 0.05 }}
+>
+  {content}
+</motion.div>
+
+// Hover effects
+<motion.div
+  whileHover={{ y: -2 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ duration: 0.2 }}
+>
+  {content}
+</motion.div>
+
+// Spring physics for interactive elements
+whileTap={{ scale: 0.95 }}
+transition={{ type: "spring", stiffness: 400, damping: 17 }}
+```
+
+## TypeScript Standards
+
+### Type Safety First
+
+```typescript
+// ✅ CORRECT: Explicit types
+interface UserData {
+  id: string;
+  name: string;
+  email: string;
+}
+
+const [user, setUser] = useState<UserData | null>(null);
+
+// ❌ WRONG: Using 'any'
+const data: any = response;
+
+// ✅ CORRECT: Use unknown or specific types
+const data = response as Record<string, unknown>;
+```
+
+### Error Handling
+
+Use typed errors that map to HTTP status codes:
+
+```typescript
+import { ValidationError, AuthenticationError, NotFoundError } from "@/lib/errors";
+
+if (!params.query) {
+  throw new ValidationError("Query parameter is required");
+}
+
+if (!bearerToken) {
+  throw new AuthenticationError("Bearer token required");
+}
+
+const user = await db.user.findUnique({ where: { email } });
+if (!user) {
+  throw new NotFoundError("User");
+}
+```
+
+Let errors bubble up to error boundaries. Only catch when you have meaningful recovery logic.
+
+## API Route Pattern
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { logger } from "@/utils/logger";
+
+export async function GET(request: NextRequest) {
+  try {
+    // 1. Authentication
+    // Verify user authentication here
+
+    // 2. Parse query params
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("query") || undefined;
+    const limit = parseInt(searchParams.get("limit") || "20");
+
+    // 3. Database operation
+    const result = await fetchData({ query, limit });
+
+    // 4. Success response
+    return NextResponse.json({
+      success: true,
+      data: result
+    });
+  } catch (error: unknown) {
+    logger.error("Operation failed", { error });
+    
+    return NextResponse.json(
+      { success: false, error: "Internal server error" },
+      { status: 500 }
+    );
+  }
+}
+```
+
+## Accessibility
+
+### Semantic HTML
+
+```typescript
+// ✅ GOOD: Proper semantic elements
+<header>...</header>
+<nav>...</nav>
+<main>...</main>
+<article>...</article>
+
+// ❌ BAD: Divs for everything
+<div className="header">...</div>
+```
+
+### ARIA Labels
+
+```typescript
+// Buttons without visible text
+<button aria-label="Close dialog">
+  <X className="h-4 w-4" />
+</button>
+
+// Icon buttons
+<button aria-label="Search">
+  <SearchIcon />
+</button>
+
+// Inputs with descriptions
+<input
+  type="text"
+  aria-label="Search items"
+  aria-describedby="search-hint"
+/>
+<span id="search-hint">Enter keywords to search</span>
+```
+
+### Keyboard Navigation
+
+```typescript
+// Tab navigation
+<button tabIndex={0}>Focusable</button>
+
+// Handle keyboard events
+<div
+  role="button"
+  tabIndex={0}
+  onClick={handleClick}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      handleClick();
+    }
+  }}
+>
+  Interactive div
+</div>
+```
+
+## Mobile Checklist
+
+Before committing any UI code:
+
+- [ ] Looks correct at 320px width (smallest common phone)
+- [ ] Touch targets are at least 44×44px
+- [ ] No horizontal scroll on mobile
+- [ ] Bottom padding accounts for mobile nav (pb-28)
+- [ ] Focus states visible on keyboard navigation
+- [ ] Animations feel smooth and native-like
+- [ ] Modals slide from bottom on mobile
+- [ ] Text is readable without zooming (min 14px)
+
+## File Organization
+
+```typescript
+// Import organization
+// External packages
+import React from "react";
+import { motion } from "framer-motion";
+
+// Types
+import type { ComponentProps } from "@/types";
+
+// Internal utilities
+import { cn } from "@/lib/utils";
+import { logger } from "@/utils/logger";
+
+// Components
+import { Card } from "@/components/ui/card";
+```
+
+**Naming conventions:**
+- Files: `kebab-case` or `PascalCase`
+- Types/Interfaces: `PascalCase`
+- Functions/Variables: `camelCase`
+- Constants: `SCREAMING_SNAKE_CASE`
+
+## Performance Best Practices
+
+### Image Optimization
+
+```typescript
+import Image from "next/image";
+
+<Image
+  src="/image.jpg"
+  alt="Descriptive alt text"
+  width={800}
+  height={600}
+  loading="lazy"
+  placeholder="blur"
+/>
+```
+
+### Lazy Loading
+
+```typescript
+import dynamic from "next/dynamic";
+
+const HeavyComponent = dynamic(() => import("./HeavyComponent"), {
+  loading: () => <LoadingSpinner />,
+  ssr: false
+});
+```
+
+### Memoization
+
+```typescript
+import { useMemo, useCallback } from "react";
+
+// Expensive computations
+const filteredData = useMemo(() => {
+  return data.filter((item) => item.active);
+}, [data]);
+
+// Stable function references
+const handleClick = useCallback(() => {
+  doSomething(id);
+}, [id]);
+```
+
+## Validation Checklist
+
+Before committing:
+
+- [ ] TypeScript compiles with no errors
+- [ ] ESLint passes
+- [ ] No `console.log` statements (use logger)
+- [ ] Imports organized correctly
+- [ ] JSDoc comments added
+- [ ] Error handling present
+- [ ] Component documented
+- [ ] Mobile responsive
+- [ ] Dark mode works
+- [ ] Accessibility verified

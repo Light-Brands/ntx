@@ -1,0 +1,101 @@
+{
+  "lastUpdated": "2025-12-17T00:00:00.000Z",
+  "overall": {
+    "totalEpics": 9,
+    "completedEpics": 0,
+    "inProgressEpics": 0,
+    "notStartedEpics": 9,
+    "blockedEpics": 0,
+    "overallPercentage": 0,
+    "velocity": {
+      "pagesPerWeek": 0,
+      "epicsPerMonth": 0,
+      "trend": "stable"
+    }
+  },
+  "epics": [
+    {
+      "epicId": "epic-00",
+      "epicNumber": 0,
+      "epicName": "Foundation",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-01",
+      "epicNumber": 1,
+      "epicName": "Mira",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-02",
+      "epicNumber": 2,
+      "epicName": "Humans",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-03",
+      "epicNumber": 3,
+      "epicName": "Practices",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-04",
+      "epicNumber": 4,
+      "epicName": "Discovery",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-05",
+      "epicNumber": 5,
+      "epicName": "Impact",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-06",
+      "epicNumber": 6,
+      "epicName": "Business",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-07",
+      "epicNumber": 7,
+      "epicName": "Community",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    },
+    {
+      "epicId": "epic-08",
+      "epicNumber": 8,
+      "epicName": "Monetization",
+      "status": "not-started",
+      "completionPercentage": 0,
+      "sections": [],
+      "blockers": []
+    }
+  ],
+  "documents": []
+}
+

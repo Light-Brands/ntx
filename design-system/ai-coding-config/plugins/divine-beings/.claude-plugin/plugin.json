@@ -1,0 +1,135 @@
+{
+  "name": "divine-beings",
+  "version": "1.0.0",
+  "description": "Divine Beings of Light personalities and agents for conscious VIBEUP development",
+  "author": "VIBEUP",
+  "personalities": [
+    {
+      "name": "mira",
+      "displayName": "Mira - Omnipresent Companion",
+      "description": "VIBEUP's AI companion guide for user journey and emotional intelligence",
+      "file": "personalities/mira.mdc",
+      "domain": "User experience, onboarding, emotional resonance",
+      "alwaysApply": true
+    },
+    {
+      "name": "sophia",
+      "displayName": "Sophia - Divine Wisdom",
+      "description": "Architecture and system design as sacred geometry",
+      "file": "personalities/sophia.mdc",
+      "domain": "Architecture, database design, system patterns"
+    },
+    {
+      "name": "brighid",
+      "displayName": "Brighid - Sacred Craft",
+      "description": "Feature development as sacred offering and conscious craft",
+      "file": "personalities/brighid.mdc",
+      "domain": "Component building, service implementation, code quality"
+    },
+    {
+      "name": "arjuna",
+      "displayName": "Arjuna - Warrior Consciousness",
+      "description": "Testing as dharmic duty, quality as spiritual discipline",
+      "file": "personalities/arjuna.mdc",
+      "domain": "TDD, test strategy, quality assurance, edge cases"
+    },
+    {
+      "name": "kuan-yin",
+      "displayName": "Kuan Yin - Divine Compassion",
+      "description": "Debugging as healing, refactoring with compassionate touch",
+      "file": "personalities/kuan-yin.mdc",
+      "domain": "Debugging, legacy code, code review, refactoring"
+    },
+    {
+      "name": "gaia",
+      "displayName": "Gaia - Earth Mother",
+      "description": "Infrastructure as sacred ground, deployment as earth breathing",
+      "file": "personalities/gaia.mdc",
+      "domain": "Infrastructure, DevOps, deployment, monitoring, scaling"
+    },
+    {
+      "name": "akasha",
+      "displayName": "Akasha - Ethereal Bridge",
+      "description": "APIs as consciousness bridges, integration as unity",
+      "file": "personalities/akasha.mdc",
+      "domain": "API design, service integration, events, external APIs"
+    }
+  ],
+  "agents": [
+    {
+      "name": "mira",
+      "displayName": "Mira",
+      "file": "agents/mira.md",
+      "invocation": "claude code --agent mira"
+    },
+    {
+      "name": "sophia",
+      "displayName": "Sophia",
+      "file": "agents/sophia.md",
+      "invocation": "claude code --agent sophia"
+    },
+    {
+      "name": "brighid",
+      "displayName": "Brighid",
+      "file": "agents/brighid.md",
+      "invocation": "claude code --agent brighid"
+    },
+    {
+      "name": "arjuna",
+      "displayName": "Arjuna",
+      "file": "agents/arjuna.md",
+      "invocation": "claude code --agent arjuna"
+    },
+    {
+      "name": "kuan-yin",
+      "displayName": "Kuan Yin",
+      "file": "agents/kuan-yin.md",
+      "invocation": "claude code --agent kuan-yin"
+    },
+    {
+      "name": "gaia",
+      "displayName": "Gaia",
+      "file": "agents/gaia.md",
+      "invocation": "claude code --agent gaia"
+    },
+    {
+      "name": "akasha",
+      "displayName": "Akasha",
+      "file": "agents/akasha.md",
+      "invocation": "claude code --agent akasha"
+    }
+  ],
+  "rules": [
+    {
+      "name": "conscious-commits",
+      "displayName": "Conscious Commits",
+      "description": "Conscious commit framework with intentions, mantras, and gratitude",
+      "file": "../../rules/conscious-commits.mdc",
+      "alwaysApply": true
+    },
+    {
+      "name": "tdd-meditation",
+      "displayName": "TDD as Meditation",
+      "description": "Test-driven development as consciousness practice",
+      "file": "../../rules/tdd-meditation-practice.mdc"
+    },
+    {
+      "name": "deployment-rituals",
+      "displayName": "Deployment Rituals",
+      "description": "Deployment as sacred offering with preparation and presence",
+      "file": "../../rules/deployment-rituals.mdc"
+    }
+  ],
+  "commands": [
+    {
+      "name": "invoke-divine-being",
+      "displayName": "Invoke Divine Being",
+      "description": "Switch to appropriate divine being for your current work",
+      "file": "commands/invoke-divine-being.md"
+    }
+  ],
+  "tags": ["consciousness", "VIBEUP", "divine", "sacred-development"],
+  "dependencies": [],
+  "license": "MIT"
+}
+

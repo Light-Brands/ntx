@@ -1,0 +1,255 @@
+# VIBEUP Development Tracker - Checkpoint Schema
+# JSON Schema for interrupt/resume checkpoint files
+# Version: 1.0.0
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://vibeup.io/schemas/tracker/checkpoint.schema.yaml"
+title: "VIBEUP Development Checkpoint"
+description: "Checkpoint for interrupt/resume capability during development"
+
+type: object
+required:
+  - checkpointId
+  - createdAt
+  - reason
+  - activeWork
+  - context
+  - git
+
+properties:
+  checkpointId:
+    type: string
+    pattern: "^\\d{4}-\\d{2}-\\d{2}-.+"
+    description: "Unique checkpoint ID (date-based)"
+    
+  createdAt:
+    type: string
+    format: date-time
+    
+  reason:
+    type: string
+    enum: 
+      - "manual-save"
+      - "interrupt"
+      - "session-end"
+      - "milestone"
+      - "task-complete"
+      - "error-recovery"
+      - "swarm-start"
+      - "swarm-complete"
+    description: "Why this checkpoint was created"
+    
+  activeWork:
+    type: object
+    description: "What was being worked on"
+    properties:
+      epic:
+        type: string
+        description: "Epic ID being worked on"
+      feature:
+        type: string
+        description: "Feature within the epic"
+      task:
+        type: string
+        description: "Specific atomic task"
+      taskType:
+        type: string
+        enum: 
+          - "table-schema"
+          - "table-rls"
+          - "table-migration"
+          - "endpoint-implementation"
+          - "endpoint-tests"
+          - "service-implementation"
+          - "service-tests"
+          - "component-implementation"
+          - "component-tests"
+          - "config"
+          - "documentation"
+        description: "Type of task for context restoration"
+      assignedTo:
+        type: string
+        enum: ["cursor", "claude-cli", "swarm-agent"]
+      taskProgress:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Progress within the current task"
+        
+  context:
+    type: object
+    description: "Context needed to resume work"
+    properties:
+      specSections:
+        type: array
+        items:
+          type: string
+        description: "Spec file paths and sections to reload"
+        
+      rulesLoaded:
+        type: array
+        items:
+          type: string
+        description: "Rules that were loaded for this task"
+        
+      filesModified:
+        type: array
+        items:
+          type: string
+        description: "Files with uncommitted changes"
+        
+      filesCreated:
+        type: array
+        items:
+          type: string
+        description: "New files created in this session"
+        
+      testsWritten:
+        type: array
+        items:
+          type: string
+        description: "Test files written for TDD"
+        
+      testStatus:
+        type: object
+        properties:
+          total:
+            type: integer
+          passing:
+            type: integer
+          failing:
+            type: integer
+          skipped:
+            type: integer
+          summary:
+            type: string
+            description: "Human-readable test summary"
+            
+      dependencies:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+            installed:
+              type: boolean
+        description: "NPM dependencies relevant to task"
+        
+      environmentVariables:
+        type: array
+        items:
+          type: string
+        description: "Env vars that should be set (names only, no values)"
+        
+  git:
+    type: object
+    description: "Git state at checkpoint"
+    required:
+      - branch
+    properties:
+      branch:
+        type: string
+        description: "Current git branch"
+      worktree:
+        type: string
+        description: "Path to git worktree if using worktrees"
+      isWorktree:
+        type: boolean
+        description: "Whether working in a worktree"
+      mainRepoPath:
+        type: string
+        description: "Path to main repo if in worktree"
+      uncommittedChanges:
+        type: boolean
+        description: "Whether there are uncommitted changes"
+      uncommittedFiles:
+        type: array
+        items:
+          type: string
+        description: "List of files with uncommitted changes"
+      lastCommit:
+        type: string
+        description: "SHA of last commit"
+      lastCommitMessage:
+        type: string
+        description: "Message of last commit"
+      stashCreated:
+        type: boolean
+        description: "Whether changes were stashed at checkpoint"
+      stashRef:
+        type: string
+        description: "Stash reference if stashed"
+        
+  timeTracking:
+    type: object
+    properties:
+      sessionStartedAt:
+        type: string
+        format: date-time
+      onTaskDuration:
+        type: string
+        description: "Time spent on current task (e.g., '47m')"
+      onFeatureDuration:
+        type: string
+        description: "Time spent on current feature"
+      onEpicDuration:
+        type: string
+        description: "Time spent on current epic"
+      totalSessionDuration:
+        type: string
+        description: "Total time in current session"
+        
+  swarmContext:
+    type: object
+    description: "Context if checkpoint is swarm-related"
+    properties:
+      executionId:
+        type: string
+      manifestPath:
+        type: string
+      tasksCompleted:
+        type: array
+        items:
+          type: string
+      tasksInProgress:
+        type: array
+        items:
+          type: string
+      tasksQueued:
+        type: array
+        items:
+          type: string
+      agentAssignments:
+        type: object
+        additionalProperties:
+          type: string
+        description: "Map of task ID to agent ID"
+        
+  resumeNotes:
+    type: string
+    description: "Human-readable notes for resuming work"
+    
+  nextSteps:
+    type: array
+    items:
+      type: string
+    description: "Suggested next steps when resuming"
+    
+  blockers:
+    type: array
+    items:
+      type: object
+      properties:
+        description:
+          type: string
+        severity:
+          type: string
+          enum: ["low", "medium", "high", "critical"]
+        waitingFor:
+          type: string
+          description: "What this is waiting for (task ID, external, etc.)"
+    description: "Any blockers identified at checkpoint"
+

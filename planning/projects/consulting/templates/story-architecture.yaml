@@ -1,0 +1,339 @@
+# Story Architecture Template
+# Use this template to document narrative architecture for story/book projects
+# All sections should be completed by the Story Excavator
+
+story_architecture:
+  # Metadata
+  engagement_id: "ENG-YYYY-NNN"
+  client: ""
+  project_title: ""  # Working title of the book/story
+  created_date: "YYYY-MM-DD"
+  version: "1.0"
+  package: ""  # entry | premium
+
+  # Core Story Essence
+  essence:
+    one_sentence_premise: |
+      The single sentence that captures what this story is about...
+
+    expanded_premise: |
+      2-3 paragraphs expanding on the core premise...
+
+    core_message: |
+      The ONE thing readers will take away...
+
+    transformation_promise: |
+      What the reader will gain/become after reading...
+
+    why_now: |
+      Why this story needs to be told now...
+
+    why_you: |
+      Why this author is the one to tell it...
+
+  # Author Background
+  author:
+    name: ""
+    background: |
+      Relevant biographical information...
+
+    credentials: |
+      What gives the author authority to tell this story...
+
+    voice_characteristics:
+      - ""
+
+    strengths_to_leverage:
+      - ""
+
+    challenges_to_navigate:
+      - ""
+
+  # Audience
+  audience:
+    primary_reader:
+      description: |
+        Who is the ideal reader...
+
+      demographics:
+        age_range: ""
+        profession: ""
+        life_stage: ""
+
+      psychographics:
+        values: []
+        struggles: []
+        aspirations: []
+
+    reader_before: |
+      What the reader believes/feels/experiences before reading...
+
+    reader_after: |
+      What the reader believes/feels/experiences after reading...
+
+    secondary_audiences:
+      - audience: ""
+        relevance: ""
+
+  # Themes
+  themes:
+    primary_theme: ""
+
+    supporting_themes:
+      - theme: ""
+        how_it_appears: ""
+
+    universal_truths:
+      - truth: ""
+        how_expressed: ""
+
+  # Narrative Structure
+  structure:
+    type: ""  # chronological | thematic | framework | hybrid | hero_journey
+
+    rationale: |
+      Why this structure was chosen...
+
+    story_arc:
+      beginning:
+        description: |
+          Where the story begins...
+        emotional_tone: ""
+
+      middle:
+        description: |
+          The journey and transformation...
+        key_turning_points:
+          - ""
+
+      end:
+        description: |
+          Where the story concludes...
+        emotional_tone: ""
+        resolution: ""
+
+    estimated_length: ""  # e.g., "45,000-55,000 words"
+
+  # Chapter Framework
+  chapters:
+    total_chapters: 0
+
+    outline:
+      - chapter: 1
+        title: ""
+        word_count_estimate: 0
+
+        summary: |
+          What this chapter covers...
+
+        core_story_element: |
+          The key story/content of this chapter...
+
+        key_scenes:
+          - ""
+
+        key_message: |
+          What the reader takes from this chapter...
+
+        emotional_arc:
+          starts: ""
+          ends: ""
+
+        transition: |
+          How this chapter leads to the next...
+
+      # Template for additional chapters
+      - chapter: 2
+        title: ""
+        word_count_estimate: 0
+        summary: ""
+        core_story_element: ""
+        key_scenes: []
+        key_message: ""
+        emotional_arc:
+          starts: ""
+          ends: ""
+        transition: ""
+
+  # Voice & Style
+  voice:
+    overall_tone:
+      - ""
+
+    style_notes: |
+      Specific guidance on writing style...
+
+    do:
+      - ""
+
+    dont:
+      - ""
+
+    sample_passage: |
+      Example of the target voice...
+
+    comparable_authors:
+      - author: ""
+        similarity: ""
+
+  # Key Story Elements
+  key_elements:
+    defining_moments:
+      - moment: ""
+        significance: ""
+        chapter: ""
+
+    key_characters:
+      - name: ""
+        role: ""
+        importance: ""
+
+    settings:
+      - location: ""
+        significance: ""
+
+    objects_symbols:
+      - element: ""
+        meaning: ""
+
+    quotes_to_include:
+      - quote: ""
+        source: ""
+        placement: ""
+
+  # Writing Guidance
+  writing_guidance:
+    process_recommendations: |
+      How to approach writing this book...
+
+    chapter_by_chapter:
+      - chapter: 1
+        prompts:
+          - ""
+        resources_needed: []
+        potential_challenges: ""
+
+    common_pitfalls:
+      - pitfall: ""
+        how_to_avoid: ""
+
+    revision_priorities:
+      - priority: ""
+        why: ""
+
+  # Content Engine (Premium + Add-on)
+  content_engine:
+    brand_voice:
+      characteristics:
+        - ""
+
+      signature_phrases:
+        - ""
+
+      topics_to_own:
+        - ""
+
+    content_pillars:
+      - pillar: ""
+        sub_topics:
+          - ""
+        content_formats:
+          - ""
+
+    30_day_calendar:
+      week_1:
+        - day: ""
+          content_type: ""
+          topic: ""
+          source_chapter: ""
+
+    ready_content:
+      - type: ""
+        title: ""
+        status: ""  # draft | ready | published
+
+  # Project Timeline
+  timeline:
+    entry_package:
+      - phase: "Story Discovery"
+        duration: "Week 1"
+        deliverable: "Raw material, themes identified"
+
+      - phase: "Narrative Architecture"
+        duration: "Week 2"
+        deliverable: "Complete architecture document"
+
+      - phase: "Writing Guidance"
+        duration: "Week 2-3"
+        deliverable: "Chapter prompts, style guide"
+
+    premium_package:
+      - phase: "Story Discovery"
+        duration: "Week 1"
+        deliverable: ""
+
+      - phase: "Narrative Architecture"
+        duration: "Week 2"
+        deliverable: ""
+
+      - phase: "First Draft"
+        duration: "Week 2-4"
+        deliverable: ""
+
+      - phase: "Revision Round 1"
+        duration: "Week 4-5"
+        deliverable: ""
+
+      - phase: "Revision Round 2"
+        duration: "Week 5-6"
+        deliverable: ""
+
+      - phase: "Final Delivery"
+        duration: "Week 6"
+        deliverable: ""
+
+  # Next Steps
+  next_steps:
+    immediate:
+      - action: ""
+        owner: ""
+        deadline: ""
+
+    publication_path:
+      recommendation: ""  # traditional | self | hybrid
+      rationale: ""
+      resources: []
+
+    marketing_considerations:
+      - ""
+
+  # Discovery Session Notes
+  session_notes:
+    session_1:
+      date: ""
+      duration: ""
+      key_revelations:
+        - ""
+      raw_notes: |
+        Detailed notes from the session...
+
+    session_2:
+      date: ""
+      duration: ""
+      key_revelations:
+        - ""
+      raw_notes: ""
+
+    session_3:
+      date: ""
+      duration: ""
+      key_revelations:
+        - ""
+      raw_notes: ""
+
+  # Appendix
+  appendix:
+    source_materials: []
+    reference_books: []
+    research_notes: ""
+    client_provided_content: []

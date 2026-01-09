@@ -1,0 +1,65 @@
+# VIBEUP Development Tracker - Tooling Validation Status
+# Tracks ai-coding-config installation and tooling health
+# Auto-updated by /track-validate command
+
+version: "1.0"
+lastValidated: null
+
+aiCodingConfig:
+  installed: false
+  version: null
+  architecture: null
+  lastUpdated: null
+  repoPath: null
+  issues: []
+
+rules:
+  totalAvailable: 0
+  discoveredAt: null
+  rulesDirectory: "rules/"
+  cursorSymlinkValid: false
+  
+  categories:
+    core: []
+    frontend: []
+    python: []
+    django: []
+    observability: []
+    personalities: []
+    ai: []
+
+commands:
+  directory: ".claude/commands/"
+  cursorSymlinkValid: false
+  available: []
+
+agents:
+  directory: ".claude/agents/"
+  available: []
+
+skills:
+  directory: ".claude/skills/"
+  available: []
+
+plugins:
+  directory: "plugins/"
+  installed: []
+
+gitHooks:
+  huskyInstalled: false
+  preCommitConfigured: false
+  prePushConfigured: false
+  hooksWorking: false
+  lastVerified: null
+
+coverage:
+  toolConfigured: false
+  configPath: null
+  thresholds:
+    statements: 0
+    branches: 0
+    functions: 0
+    lines: 0
+
+validationHistory: []
+

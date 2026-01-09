@@ -1,0 +1,96 @@
+{
+  "name": "consulting-services",
+  "version": "1.0.0",
+  "description": "AI Brand Factory consulting arm agents - client intake, service delivery, and revenue optimization",
+  "author": "AI Brand Factory",
+  "category": "consulting",
+  "agents": [
+    {
+      "name": "consulting-orchestrator",
+      "description": "Central coordinator for all consulting engagements and revenue operations",
+      "file": "consulting-orchestrator.md",
+      "role": "coordinator",
+      "triggers": ["new consulting client", "consulting engagement", "client intake", "route consulting"]
+    },
+    {
+      "name": "discovery-agent",
+      "description": "Client qualification, need assessment, and discovery call facilitation",
+      "file": "discovery-agent.md",
+      "role": "intake",
+      "triggers": ["qualify client", "discovery call", "client intake", "assess prospect"]
+    },
+    {
+      "name": "strategy-architect",
+      "description": "Creates AI Business Acceleration Blueprints and strategic roadmaps",
+      "file": "strategy-architect.md",
+      "role": "delivery",
+      "triggers": ["ai strategy", "ai blueprint", "strategy engagement", "ai roadmap"]
+    },
+    {
+      "name": "implementation-lead",
+      "description": "Leads AI Implementation Sprints and builds client AI solutions",
+      "file": "implementation-lead.md",
+      "role": "delivery",
+      "triggers": ["ai implementation", "implementation sprint", "build ai solution", "ai project"]
+    },
+    {
+      "name": "story-excavator",
+      "description": "Leads the flagship 'Breath of Life' story and book creation product",
+      "file": "story-excavator.md",
+      "role": "delivery",
+      "triggers": ["story creation", "book project", "breath of life", "author journey"]
+    },
+    {
+      "name": "revenue-optimizer",
+      "description": "Identifies upsell paths, optimizes pricing, and maximizes client lifetime value",
+      "file": "revenue-optimizer.md",
+      "role": "support",
+      "triggers": ["upsell opportunity", "pricing strategy", "revenue optimization", "deal structure"]
+    },
+    {
+      "name": "client-success",
+      "description": "Manages ongoing client relationships, case studies, and referral generation",
+      "file": "client-success.md",
+      "role": "support",
+      "triggers": ["client relationship", "case study", "testimonial", "client check-in"]
+    }
+  ],
+  "dependencies": {
+    "agent-communication-system": "^1.0.0",
+    "legal-department": "^1.0.0",
+    "brand-proposal": "^1.0.0"
+  },
+  "integrations": [
+    "crm",
+    "calendar",
+    "invoicing",
+    "document-generation",
+    "communication-channels"
+  ],
+  "handoff_protocol": "HANDOFF-PROTOCOL.md",
+  "revenue_streams": {
+    "soul_product": {
+      "name": "AI Story & Book Creation",
+      "entry_price": "$2,500-$5,000",
+      "premium_price": "$7,500-$12,000"
+    },
+    "ai_blueprint": {
+      "name": "AI Business Acceleration Blueprint",
+      "smb_price": "$3,000-$5,000",
+      "mid_market_price": "$7,500-$10,000",
+      "enterprise_price": "$15,000+"
+    },
+    "ai_implementation": {
+      "name": "AI Implementation Sprint",
+      "fixed_project": "$10,000-$25,000",
+      "monthly_retainer": "$3,000-$7,500/mo",
+      "bundle": "$12,000-$35,000"
+    }
+  },
+  "30_day_targets": {
+    "week_1": "$5K-$15K",
+    "week_2": "$10K-$25K",
+    "week_3_4": "$10K-$20K",
+    "total": "$25K-$50K+"
+  }
+}

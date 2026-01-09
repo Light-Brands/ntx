@@ -1,0 +1,337 @@
+# AI Business Acceleration Blueprint Template
+# Use this template to structure AI Blueprint deliverables
+# All sections should be completed by the Strategy Architect
+
+ai_blueprint:
+  # Metadata
+  engagement_id: "ENG-YYYY-NNN"
+  client: ""
+  company: ""
+  prepared_by: ""
+  date: "YYYY-MM-DD"
+  version: "1.0"
+  tier: ""  # standard | enhanced | enterprise
+
+  # Executive Summary
+  executive_summary:
+    headline: |
+      One sentence summary of the key finding and opportunity...
+
+    current_state_summary: |
+      2-3 sentences on where the client is today...
+
+    key_finding: |
+      The primary insight from this analysis...
+
+    top_opportunities:
+      - opportunity: ""
+        estimated_value: ""
+      - opportunity: ""
+        estimated_value: ""
+      - opportunity: ""
+        estimated_value: ""
+
+    recommended_investment: ""  # e.g., "$15,000-$20,000"
+    expected_roi: ""  # e.g., "5x in Year 1"
+    timeline_to_value: ""  # e.g., "90 days"
+
+  # Current State Assessment
+  current_state:
+    operations:
+      description: |
+        Overview of operational processes...
+
+      key_processes:
+        - process: ""
+          time_spent: ""
+          pain_level: ""  # 1-10
+          automation_potential: ""  # low | medium | high
+
+      strengths:
+        - ""
+      weaknesses:
+        - ""
+      key_metrics:
+        - metric: ""
+          current_value: ""
+
+    marketing_sales:
+      description: |
+        Overview of marketing and sales activities...
+
+      lead_generation:
+        channels: []
+        effectiveness: ""
+
+      content_creation:
+        current_approach: ""
+        time_invested: ""
+        output_volume: ""
+
+      sales_process:
+        description: ""
+        conversion_rate: ""
+        cycle_length: ""
+
+      strengths:
+        - ""
+      weaknesses:
+        - ""
+      key_metrics:
+        - metric: ""
+          current_value: ""
+
+    internal_workflow:
+      description: |
+        Overview of internal operations and collaboration...
+
+      communication:
+        tools: []
+        effectiveness: ""
+
+      knowledge_management:
+        current_state: ""
+        challenges: []
+
+      decision_making:
+        speed: ""
+        bottlenecks: []
+
+      strengths:
+        - ""
+      weaknesses:
+        - ""
+
+    technology:
+      current_stack:
+        - tool: ""
+          purpose: ""
+          satisfaction: ""  # 1-10
+
+      integrations:
+        - from: ""
+          to: ""
+          method: ""
+
+      gaps:
+        - ""
+
+      data_state:
+        silos: []
+        quality: ""
+
+  # AI Opportunity Matrix
+  opportunity_matrix:
+    summary: |
+      Overview of the AI opportunity landscape...
+
+    opportunities:
+      - id: 1
+        opportunity: ""
+        category: ""  # save_money | increase_speed | increase_revenue
+        description: |
+          Detailed description of the opportunity...
+
+        impact: ""  # high | medium | low
+        impact_detail: ""
+
+        effort: ""  # high | medium | low
+        effort_detail: ""
+
+        priority: 0  # calculated: impact/effort
+
+        ai_solution_type: ""  # content_automation | process_automation | decision_support | customer_interaction | data_analysis | prediction
+
+        recommended_tools:
+          - ""
+
+        estimated_value:
+          time_saved: ""
+          cost_reduced: ""
+          revenue_potential: ""
+
+    quick_wins:
+      description: "High impact, low effort opportunities to implement first"
+      opportunities:
+        - id: 0
+          implementation_time: ""
+          expected_result: ""
+
+    strategic_plays:
+      description: "High impact opportunities requiring more investment"
+      opportunities:
+        - id: 0
+          implementation_time: ""
+          expected_result: ""
+
+  # Tool Stack Recommendation
+  tool_recommendations:
+    philosophy: |
+      Our approach to tool selection...
+
+    categories:
+      - category: "AI Writing/Content"
+        primary:
+          tool: ""
+          why: ""
+          cost: ""
+          complexity: ""  # low | medium | high
+        alternatives:
+          - tool: ""
+            when_to_consider: ""
+
+      - category: "AI Automation"
+        primary:
+          tool: ""
+          why: ""
+          cost: ""
+          complexity: ""
+        alternatives:
+          - tool: ""
+            when_to_consider: ""
+
+      - category: "AI Customer Service"
+        primary:
+          tool: ""
+          why: ""
+          cost: ""
+          complexity: ""
+        alternatives:
+          - tool: ""
+            when_to_consider: ""
+
+      - category: "AI Analytics"
+        primary:
+          tool: ""
+          why: ""
+          cost: ""
+          complexity: ""
+        alternatives:
+          - tool: ""
+            when_to_consider: ""
+
+    integration_architecture:
+      description: |
+        How these tools connect...
+
+      diagram: ""  # ASCII or reference to visual
+
+  # 90-Day Roadmap
+  roadmap:
+    overview: |
+      How we recommend approaching implementation...
+
+    month_1:
+      theme: "Foundation"
+      focus: |
+        What this month is about...
+
+      deliverables:
+        - deliverable: ""
+          description: ""
+          success_metric: ""
+
+      resources_needed:
+        - resource: ""
+          role: ""
+          time: ""
+
+      key_milestones:
+        - milestone: ""
+          target_date: ""
+
+      risks:
+        - risk: ""
+          mitigation: ""
+
+    month_2:
+      theme: "Acceleration"
+      focus: ""
+      deliverables: []
+      resources_needed: []
+      key_milestones: []
+      risks: []
+
+    month_3:
+      theme: "Scale"
+      focus: ""
+      deliverables: []
+      resources_needed: []
+      key_milestones: []
+      risks: []
+
+    success_metrics:
+      - metric: ""
+        baseline: ""
+        target_30_day: ""
+        target_60_day: ""
+        target_90_day: ""
+
+  # Investment Analysis
+  investment:
+    paths:
+      diy:
+        description: "Self-implementation with this blueprint"
+        estimated_cost: ""
+        timeline: ""
+        pros:
+          - ""
+        cons:
+          - ""
+        recommended_for: ""
+
+      supported:
+        description: "Implementation with strategic guidance"
+        estimated_cost: ""
+        timeline: ""
+        pros:
+          - ""
+        cons:
+          - ""
+        recommended_for: ""
+
+      full_implementation:
+        description: "Complete done-for-you implementation"
+        estimated_cost: ""
+        timeline: ""
+        pros:
+          - ""
+        cons:
+          - ""
+        recommended_for: ""
+
+    our_recommendation:
+      path: ""
+      rationale: |
+        Why we recommend this path...
+
+  # Next Steps
+  next_steps:
+    immediate:
+      - action: ""
+        timeline: ""
+        owner: ""  # client | us
+
+    to_discuss:
+      - topic: ""
+        options: []
+
+    implementation_options:
+      option_1:
+        name: ""
+        scope: ""
+        investment: ""
+        timeline: ""
+
+      option_2:
+        name: ""
+        scope: ""
+        investment: ""
+        timeline: ""
+
+  # Appendix
+  appendix:
+    detailed_findings: ""
+    tool_comparisons: ""
+    interview_notes: ""
+    data_sources: ""

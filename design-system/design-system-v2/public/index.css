@@ -1,0 +1,382 @@
+/**
+ * VIBEUP Design System - Global Styles
+ * Dynamic theming using CSS variables
+ */
+
+:root {
+  /* Color variables - set dynamically by ThemeContext */
+  --color-abyss-base: #0D0D0D;
+  --color-abyss-mystic: #121212;
+  --color-abyss-light: #1A1A1A;
+  --color-abyss-lighter: #2A2A2A;
+  
+  --color-moonlight: #F5F5F5;
+  --color-moonlight-soft: #E0E0E0;
+  --color-moonlight-muted: #A0A0A0;
+  
+  --color-aqua-light: #97D9C4;
+  --color-aqua-medium: #7BC4B1;
+  --color-teal-light: #5BB8B0;
+  --color-gold-accent: #D4AF37;
+  
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error: #EF5350;
+  --color-info: #29B6F6;
+  
+  /* Font variables - set dynamically by ThemeContext */
+  --font-display: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-heading: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-ui: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-abyss-base);
+  color: var(--color-moonlight);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================================
+ * Font Hierarchy - Apply theme fonts to semantic elements
+ * ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+p, li, span {
+  font-family: var(--font-body);
+}
+
+button, input, select, textarea {
+  font-family: var(--font-ui);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================================
+ * Gradient Utilities
+ * ============================================================================ */
+
+.abyss-gradient-primary {
+  background: linear-gradient(135deg, var(--color-aqua-light) 0%, var(--color-aqua-medium) 100%);
+}
+
+.abyss-gradient-depth {
+  background: linear-gradient(135deg, var(--color-abyss-mystic) 0%, var(--color-abyss-base) 100%);
+}
+
+.abyss-gradient-accent {
+  background: linear-gradient(135deg, var(--color-teal-light) 0%, var(--color-aqua-light) 100%);
+}
+
+/* ============================================================================
+ * Glow Effects
+ * ============================================================================ */
+
+.mira-glow {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-aqua-light) 15%, transparent);
+}
+
+.shadow-aqua-glow {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--color-aqua-light) 30%, transparent);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-gold-accent) 20%, transparent);
+}
+
+.subtle-elevation {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================================
+ * Animations
+ * ============================================================================ */
+
+@keyframes neural-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.6; 
+  }
+}
+
+.animate-neural { 
+  animation: neural-pulse 4s infinite ease-in-out; 
+}
+
+@keyframes drift {
+  0% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-10px) rotate(1deg); 
+  }
+  100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+}
+
+.animate-drift { 
+  animation: drift 6s infinite ease-in-out; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ============================================================================
+ * Scrollbar Styles
+ * ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-abyss-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal-light);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-aqua-light);
+}
+
+/* Hide scrollbar for elements with .no-scrollbar class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================================
+ * Selection Styles
+ * ============================================================================ */
+
+::selection {
+  background: var(--color-aqua-light);
+  color: var(--color-abyss-base);
+}
+
+::-moz-selection {
+  background: var(--color-aqua-light);
+  color: var(--color-abyss-base);
+}
+
+/* ============================================================================
+ * Focus Styles
+ * ============================================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-aqua-light);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+ * Smooth Transitions for Theme Changes
+ * ============================================================================ */
+
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.3s ease,
+              font-family 0s;
+}
+
+/* Prevent transition on font-family to avoid FOUC */
+body,
+h1, h2, h3, h4, h5, h6,
+p, span, div {
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              color 0.3s ease;
+}
+
+/* ============================================================================
+ * ReactQuill Dark Theme Overrides
+ * ============================================================================ */
+
+.ql-toolbar.ql-snow {
+  background: var(--color-abyss-mystic);
+  border-color: var(--color-abyss-light) !important;
+  border-radius: 8px 8px 0 0;
+}
+
+.ql-container.ql-snow {
+  background: var(--color-abyss-base);
+  border-color: var(--color-abyss-light) !important;
+  border-radius: 0 0 8px 8px;
+  color: var(--color-moonlight);
+  font-family: var(--font-body);
+}
+
+.ql-editor {
+  min-height: 300px;
+  color: var(--color-moonlight);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.ql-editor.ql-blank::before {
+  color: var(--color-moonlight-muted);
+  font-style: italic;
+}
+
+/* Toolbar buttons */
+.ql-snow .ql-stroke {
+  stroke: var(--color-moonlight-muted);
+}
+
+.ql-snow .ql-fill {
+  fill: var(--color-moonlight-muted);
+}
+
+.ql-snow .ql-picker {
+  color: var(--color-moonlight-muted);
+}
+
+.ql-snow .ql-picker-label {
+  color: var(--color-moonlight-muted);
+}
+
+.ql-snow .ql-picker-options {
+  background: var(--color-abyss-mystic);
+  border-color: var(--color-abyss-light);
+}
+
+.ql-snow .ql-picker-item {
+  color: var(--color-moonlight-muted);
+}
+
+.ql-snow .ql-picker-item:hover {
+  color: var(--color-aqua-light);
+}
+
+/* Active/hover states */
+.ql-snow button:hover .ql-stroke,
+.ql-snow .ql-picker-label:hover .ql-stroke,
+.ql-snow button.ql-active .ql-stroke {
+  stroke: var(--color-aqua-light);
+}
+
+.ql-snow button:hover .ql-fill,
+.ql-snow .ql-picker-label:hover .ql-fill,
+.ql-snow button.ql-active .ql-fill {
+  fill: var(--color-aqua-light);
+}
+
+.ql-snow button:hover,
+.ql-snow .ql-picker-label:hover {
+  color: var(--color-aqua-light);
+}
+
+/* Editor content styles */
+.ql-editor h1, .ql-editor h2, .ql-editor h3,
+.ql-editor h4, .ql-editor h5, .ql-editor h6 {
+  color: var(--color-moonlight);
+  font-family: var(--font-heading);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.ql-editor p {
+  margin-bottom: 1em;
+}
+
+.ql-editor a {
+  color: var(--color-aqua-light);
+}
+
+.ql-editor blockquote {
+  border-left: 4px solid var(--color-aqua-light);
+  padding-left: 1em;
+  color: var(--color-moonlight-muted);
+  font-style: italic;
+}
+
+.ql-editor code,
+.ql-editor pre {
+  background: var(--color-abyss-light);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  color: var(--color-aqua-light);
+}
+
+.ql-editor code {
+  padding: 2px 6px;
+}
+
+.ql-editor pre {
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.ql-editor ul, .ql-editor ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.ql-editor li {
+  margin-bottom: 0.5em;
+}
+
+/* Tooltip styling */
+.ql-tooltip {
+  background: var(--color-abyss-mystic) !important;
+  border-color: var(--color-abyss-light) !important;
+  color: var(--color-moonlight) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+}
+
+.ql-tooltip input {
+  background: var(--color-abyss-base) !important;
+  border-color: var(--color-abyss-light) !important;
+  color: var(--color-moonlight) !important;
+  border-radius: 4px;
+}
+
+.ql-tooltip a {
+  color: var(--color-aqua-light) !important;
+}
+

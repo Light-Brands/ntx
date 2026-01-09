@@ -1,0 +1,62 @@
+{
+  "name": "vibeup-cms",
+  "description": "AI-Powered Blog Content Management System with Gemini integration",
+  "version": "1.0.0",
+  "author": "VibeUp <https://github.com/vibeup-org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vibeup-org/cms.git"
+  },
+  "homepage": "https://github.com/vibeup-org/cms#readme",
+  "bugs": {
+    "url": "https://github.com/vibeup-org/cms/issues"
+  },
+  "keywords": [
+    "ai",
+    "blog",
+    "cms",
+    "content-management",
+    "gemini",
+    "nextjs",
+    "typescript",
+    "ai-writer",
+    "blog-generator"
+  ],
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "tsx scripts/migrate-to-supabase.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.86.2",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "lottie-react": "^2.4.1",
+    "lucide-react": "^0.554.0",
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
+    "sharp": "^0.34.5",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^22.14.0",
+    "@types/react": "19.2.6",
+    "autoprefixer": "^10.4.22",
+    "concurrently": "^9.1.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}

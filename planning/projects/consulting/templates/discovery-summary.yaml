@@ -1,0 +1,140 @@
+# Discovery Summary Template
+# Use this template after completing a discovery call
+# All fields should be filled in by the Discovery Agent
+
+discovery_summary:
+  # Metadata
+  inquiry_id: "INQ-YYYY-NNN"
+  discovery_date: "YYYY-MM-DD"
+  discovery_agent: ""
+  call_duration: ""  # e.g., "75 minutes"
+
+  # Client Information
+  client:
+    name: ""
+    company: ""
+    role: ""
+    email: ""
+    phone: ""
+    industry: ""
+    company_size: ""  # employees or revenue range
+    location: ""
+
+  # Current State Assessment
+  current_state:
+    business_description: |
+      Brief description of the client's business...
+
+    team_size: 0
+
+    key_tools:
+      - tool: ""
+        purpose: ""
+
+    current_pain_points:
+      - pain: ""
+        impact: ""  # e.g., "10+ hours/week wasted"
+        urgency: ""  # low | medium | high
+
+    current_strengths:
+      - ""
+
+  # Desired Future State
+  desired_future:
+    primary_goal: ""
+    success_definition: |
+      What would success look like in 90 days...
+
+    timeline_expectation: ""  # e.g., "Start within 2 weeks"
+
+    priorities:
+      - priority: ""
+        importance: ""  # 1-10
+
+  # AI Opportunity Assessment
+  ai_opportunity:
+    awareness_level: ""  # none | basic | moderate | advanced
+    openness: ""  # skeptical | curious | eager | experienced
+
+    previous_ai_experience: |
+      Any prior AI tool usage or projects...
+
+    concerns: []
+
+    identified_opportunities:
+      - area: ""  # e.g., "Content creation"
+        potential_impact: ""  # e.g., "Save 10 hrs/week"
+        ai_solution_type: ""  # automation | generation | analysis | interaction
+
+  # BANT Qualification
+  qualification:
+    budget:
+      score: 0  # 1-10
+      range: ""  # e.g., "$5,000-$10,000"
+      notes: ""
+
+    authority:
+      score: 0  # 1-10
+      decision_maker: false  # true | false
+      others_involved: []
+      notes: ""
+
+    need:
+      score: 0  # 1-10
+      urgency: ""  # low | medium | high | critical
+      notes: ""
+
+    timeline:
+      score: 0  # 1-10
+      desired_start: ""
+      notes: ""
+
+    composite_score: 0  # average of above
+    status: ""  # highly_qualified | qualified | nurture | disqualified
+
+  # Recommendation
+  recommendation:
+    primary_track: ""  # soul-product | ai-blueprint | ai-sprint
+    track_rationale: |
+      Why this track is recommended...
+
+    suggested_tier: ""  # entry | standard | enhanced | premium | enterprise
+
+    pricing_guidance:
+      suggested_price: ""
+      justification: ""
+
+    secondary_opportunities:
+      - ""
+
+    concerns:
+      - ""
+
+    red_flags:
+      - ""
+
+  # Next Steps
+  next_steps:
+    immediate:
+      - action: ""
+        owner: ""  # us | client
+        due: ""
+
+    proposal_elements:
+      - ""
+
+    follow_up_date: ""
+
+  # Call Notes
+  notes:
+    key_quotes:
+      - ""
+
+    relationship_notes: |
+      Rapport, communication style, preferences...
+
+    special_considerations: |
+      Anything unique about this client...
+
+    case_study_potential: ""  # low | medium | high
+    referral_potential: ""  # low | medium | high

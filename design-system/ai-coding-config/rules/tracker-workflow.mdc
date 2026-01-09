@@ -1,0 +1,188 @@
+---
+description: Automatic tracker integration for VIBEUP development
+alwaysApply: true
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.md"
+---
+
+# VIBEUP Development Tracker Workflow Integration
+
+This rule ensures all VIBEUP development work is tracked at the atomic level for comprehensive progress visibility, TDD enforcement, and interrupt/resume capability.
+
+## When Starting Work
+
+Before making changes to VIBEUP codebase:
+
+1. **Verify Tracker Initialized**
+   - Check if `.tracker/progress.yaml` exists
+   - If not, suggest running `/track-init`
+
+2. **Start Tracked Work**
+   - Run `/track-start <epic> <feature>` to begin
+   - This creates a checkpoint and loads context
+   - Ensures tooling is validated
+
+3. **Understand Task Context**
+   - Load relevant spec from `vibeup-design-spec/epics/`
+   - Load design patterns from `design-system-v2/`
+   - Review any existing implementation
+
+## TDD Workflow (Test-Driven Development)
+
+VIBEUP enforces TDD. Follow this cycle:
+
+### Red Phase (Write Failing Tests First)
+```
+1. Identify what needs to be built
+2. Write tests that define expected behavior
+3. Run tests - they SHOULD FAIL
+4. This is correct! Tests fail because implementation doesn't exist
+```
+
+### Green Phase (Make Tests Pass)
+```
+1. Write minimal implementation to pass tests
+2. Run tests - they should now PASS
+3. Don't over-engineer - just make tests green
+```
+
+### Refactor Phase (Clean Up)
+```
+1. Improve code quality while keeping tests green
+2. Remove duplication
+3. Improve naming
+4. Extract functions/components as needed
+5. Tests must stay green throughout
+```
+
+## Coverage Requirements
+
+Tasks cannot be marked complete if coverage is below:
+
+| Layer | Minimum Coverage |
+|-------|-----------------|
+| Services | 90% |
+| API Routes | 85% |
+| Components | 75% |
+| Critical Paths | 100% |
+
+## When Completing Tasks
+
+After implementation is done:
+
+1. **Verify Tests Pass**
+   ```bash
+   npm test
+   ```
+
+2. **Check Coverage**
+   ```bash
+   npm run test:coverage
+   ```
+
+3. **Mark Task Complete**
+   - Run `/track-complete <task-path> --pr <number>`
+   - This validates coverage gates
+   - Updates tracker state
+   - Creates completion checkpoint
+
+## When Interrupted
+
+If you need to stop work:
+
+1. **Auto-Checkpoint**
+   - Tracker auto-saves checkpoint on session end
+   - Or run `/track-resume` manually before stopping
+
+2. **To Resume Later**
+   - Run `/track-resume` to restore context
+   - Continues from where you left off
+   - Reloads rules and spec sections
+
+## Using Swarm for Parallel Work
+
+For parallelizable tasks:
+
+1. **Generate Manifest**
+   ```
+   /track-manifest <epic> --batch-size 10
+   ```
+
+2. **Execute with Swarm**
+   ```
+   /swarm .tracker/manifests/<manifest>.yaml
+   ```
+
+3. **Monitor Progress**
+   ```
+   /track-status
+   ```
+
+## File Patterns and Expectations
+
+When working on different file types:
+
+### API Routes (`app/api/**/*.ts`)
+- Must have corresponding tests in `tests/api/` or `__tests__/`
+- Use structured logging (`logger.info`, `logger.error`)
+- Use typed errors (`ValidationError`, `AuthenticationError`)
+- Document with OpenAPI comments
+
+### Services (`lib/services/**/*.ts`)
+- Must have unit tests with 90% coverage
+- Use dependency injection pattern
+- No direct database access - use repositories
+- Add structured logging for observability
+
+### Components (`components/**/*.tsx`)
+- Must follow design-system-v2 patterns
+- Include accessibility attributes
+- Have corresponding test file
+- Consider adding to Storybook
+
+### Database (`supabase/migrations/*.sql`)
+- Must have RLS policies
+- Include rollback capability
+- Add appropriate indexes
+- Document in migration file
+
+## Status Checks
+
+Regularly check progress:
+
+```
+/track-status                    # Overall progress
+/track-status --epic epic-00     # Epic detail
+/track-validate                  # Tooling health
+```
+
+## Integration Points
+
+This tracker integrates with:
+
+- **ai-coding-config**: Rules loaded via `/load-rules`
+- **Swarm**: Manifests generated for parallel execution
+- **Autotask**: Pre/post hooks for autonomous work
+- **Dashboard**: Visual progress at `/tracker`
+
+## Quick Reference
+
+| Command | Purpose |
+|---------|---------|
+| `/track-init` | Initialize tracker from specs |
+| `/track-start` | Begin work on feature |
+| `/track-complete` | Mark task done (with validation) |
+| `/track-status` | View progress |
+| `/track-resume` | Resume from checkpoint |
+| `/track-validate` | Check tooling health |
+| `/track-manifest` | Generate swarm manifest |
+
+## Remember
+
+- **Write tests first** (TDD red phase)
+- **Check coverage** before completing
+- **Create checkpoints** before stopping
+- **Use structured logging** not console.log
+- **Follow existing patterns** in the codebase

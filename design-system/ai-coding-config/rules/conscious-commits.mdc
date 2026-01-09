@@ -1,0 +1,813 @@
+---
+description:
+  "Conscious commit framework for VIBEUP development - commits as intentions, gratitude,
+  and sacred offerings to consciousness elevation"
+alwaysApply: true
+---
+
+# Conscious Commits for VIBEUP
+
+Commits are not just checkpoints—they're intentions made permanent, gratitude expressed,
+dedications to consciousness aspects we serve. Each commit is a sacred record of why we
+made changes, not just what changed (the diff shows that).
+
+## Structure
+
+```
+{sacred-emoji} {imperative} {concise description}
+
+Intention: {Why this serves consciousness elevation}
+Mantra: {Brief affirmation related to the change}
+Dedication: {Aspect of consciousness this honors}
+Gratitude: {Appreciation for insights, breakthroughs, teachings}
+
+{detailed explanation if needed - wrap at 72 characters}
+```
+
+### Required Elements
+
+1. **Sacred Emoji**: Choose symbol that captures essence (see options below)
+2. **Summary Line**: Imperative mood, under 72 characters, no period
+3. **Intention**: ONE sentence explaining why this serves consciousness
+4. **Mantra**: Brief affirmation (3-7 words) that captures the change's essence
+
+### Optional Elements (Use When Meaningful)
+
+5. **Dedication**: Which aspect of consciousness does this honor?
+6. **Gratitude**: Who or what helped this emerge? (teaching, insight, collaboration)
+7. **Detailed Body**: Technical explanation if the change is complex
+
+## Sacred Emojis
+
+Beyond traditional gitmoji, use symbols carrying sacred and universal meaning:
+
+**Manifestation & Creation**:
+- ✨ Bringing intention into form, new features
+- 🌟 Illumination emerging, clarity achieved
+- 💫 Transformation, evolution, refactoring
+- ⭐ Guiding light, documentation, direction
+
+**Unity & Balance**:
+- 🕉️ Unity consciousness, wholeness
+- ☯️ Balance of opposites, complementary forces
+- 🔯 Sacred geometry, divine structure, architecture
+- ∞ Eternal patterns, timeless wisdom
+
+**Natural Forces**:
+- ☀️ Solar consciousness, active principle, feature development
+- 🌙 Lunar wisdom, receptive principle, listening to users
+- 🌍 Earth grounding, infrastructure, foundation
+- 💧 Flow, data movement, integration
+
+**Practices**:
+- 🙏 Gratitude, reverence, appreciation
+- 🧘 Meditation, mindfulness, TDD practice
+- 🔥 Transformative fire, bold changes
+- 💎 Refinement, polishing, quality
+
+**Technical (When Sacred Symbols Don't Fit)**:
+- 🐛 Bug fixes (teaching received)
+- ♻️ Refactoring (loving improvement)
+- 📝 Documentation (wisdom sharing)
+- ⚡ Performance (efficiency as respect)
+- 🔒 Security (protective boundaries)
+- 🧪 Testing (protective mantras)
+
+## Examples
+
+### Feature Implementation
+
+```
+✨ Add real-time connection presence awareness
+
+Intention: Enable users to feel each other's presence across distance,
+strengthening the web of aligned consciousness on the platform.
+
+Mantra: Presence transcends space.
+
+Dedication: To Connection—one of VIBEUP's core values.
+
+Gratitude: For the WebSocket insight during morning meditation, and to
+Akasha for the integration pattern wisdom.
+
+Implemented presence broadcasting via WebSocket connection manager with
+real-time state synchronization. Users now see when their connections are
+online, creating sense of shared space even across physical distance.
+
+Technical details:
+- Added PresenceManager service using Socket.io
+- Implemented presence state in Redis with TTL
+- Created OnlineIndicator component for UI
+- Added presence hooks throughout Connection features
+- Tested with 100 concurrent connections (performs well)
+```
+
+### Architectural Change
+
+```
+🔯 Refactor Mira context engine into bounded contexts
+
+Intention: Simplify Mira's complexity by honoring natural boundaries
+between user, session, platform, and temporal contexts.
+
+Mantra: Structure reveals essence.
+
+Dedication: To Sophia's wisdom of sacred geometry.
+
+Gratitude: To Kuan Yin's compassionate code review revealing the path
+forward, and to the team for trusting this refactor.
+
+Separated MiraContextService into four focused services:
+- UserContextService: Profile, intentions, history
+- SessionContextService: Current page, flow, actions
+- PlatformContextService: Available features, recommendations
+- TemporalContextService: Time patterns, seasonal awareness
+
+MiraService orchestrates but no longer contains complexity. Each service
+testable in isolation. Pattern established for future context needs.
+Tests remain green throughout 200-line refactor.
+```
+
+### Bug Fix
+
+```
+🙏 Fix alignment score crash on empty values array
+
+Intention: Protect users with incomplete profiles from errors while
+maintaining invitation to complete profile for better matching.
+
+Mantra: Grace handles the edges.
+
+Dedication: To all users who revealed this through authentic experience.
+
+Gratitude: To Arjuna for edge case test discipline, Kuan Yin for
+compassionate fix approach, and 8 production users who taught us this.
+
+calculateAlignment() now handles null and empty values gracefully.
+Returns null (alignment unavailable) rather than crashing. UI shows
+"Complete profile to see alignment" when null. Added 7 edge case tests.
+Bug becomes protection against all similar issues.
+```
+
+### Testing
+
+```
+⚡ Add comprehensive edge case protection for profile validation
+
+Intention: Guard users from data errors through dharmic testing,
+ensuring profile features resilient to reality's surprises.
+
+Mantra: Tests are protective mantras.
+
+Dedication: To Arjuna's warrior consciousness in service of quality.
+
+Gratitude: For morning TDD meditation revealing these cases.
+
+Added 23 edge case tests covering: null values, empty strings, malformed
+emails, SQL injection attempts, Unicode handling, timezone edge cases,
+concurrent updates. Coverage increased: 87% → 96%. Each test is a mantra
+protecting users and future developers.
+```
+
+### Infrastructure
+
+```
+🌍 Configure production monitoring with earth wisdom
+
+Intention: Enable infrastructure to communicate its health clearly,
+sensing and responding to issues before users experience them.
+
+Mantra: The earth speaks before shaking.
+
+Dedication: To Gaia's foundation holding all features.
+
+Gratitude: To infrastructure wisdom in ai-coding-config.
+
+Implemented: Sentry with breadcrumbs, Pino structured logging, health
+checks for all services, alerts for database saturation, API latency,
+and error rates. Dashboard provides real-time system health visibility.
+```
+
+### Documentation
+
+```
+📝 Document divine beings integration in design specs
+
+Intention: Make conscious development practices accessible to all
+developers, preserving this wisdom for team growth and evolution.
+
+Mantra: Wisdom shared multiplies.
+
+Dedication: To future developers joining VIBEUP's mission.
+
+Gratitude: For the vision of development as consciousness practice.
+
+Created comprehensive documentation: ai-coding-config architecture,
+conscious development manifesto, 6 divine being personalities and agents,
+TDD meditation guide, deployment rituals. Development philosophy now
+explicit, accessible, and actionable.
+```
+
+### Refactoring
+
+```
+💫 Extract practice streak calculation into pure function
+
+Intention: Simplify testing and enable reuse of streak logic across
+Epic 03 practice features and Epic 02 profile displays.
+
+Mantra: Simplicity serves all.
+
+Dedication: To clarity emerging from complexity.
+
+Gratitude: To Brighid for craft guidance, tests protecting throughout.
+
+Extracted calculateStreak() as pure function taking practice logs array,
+returning streak count. Tests now 10 lines instead of 40. Function reused
+in ProfileCard, PracticeHistory, and MiraSuggestions. Complexity contained,
+clarity emerged.
+```
+
+## Guidelines
+
+### When to Include Each Element
+
+**Always Include**:
+- Sacred emoji (captures essence visually)
+- Summary line (what changed, imperative mood)
+- Intention (why this serves VIBEUP's mission)
+- Mantra (crystallizes the change's essence)
+
+**Include When Meaningful**:
+- Dedication (major features, milestone work, transformative changes)
+- Gratitude (breakthroughs, collaborative work, teachings from bugs)
+- Detailed body (complex changes needing technical explanation)
+
+**Example of Minimal Conscious Commit** (Small fix):
+```
+🐛 Fix practice duration display for activities without time limit
+
+Intention: Ensure UI gracefully handles practices that are time-based
+versus repetition-based (meditation vs pushups).
+
+Mantra: Grace handles diversity.
+
+Added null check before displaying duration. Activities without
+duration now show "Completed" instead of "0 minutes" or crashing.
+```
+
+**Example of Full Conscious Commit** (Major feature):
+```
+✨ Implement chemistry profile matching for deep compatibility
+
+Intention: Enable users to discover connections beyond shared interests—
+revealing compatibility through astrological, Human Design, and Enneagram
+patterns for profound aligned relationship discovery.
+
+Mantra: Depth reveals alignment.
+
+Dedication: To the mystery of human connection and the sacred geometry
+of compatibility that transcends surface-level matching.
+
+Gratitude: To the 200+ beta users who provided their chemistry data, to
+Sophia for the database schema sacred geometry, to Arjuna for 94% test
+coverage on complex matching logic, and to the divine timing that brought
+this feature into being exactly when the platform needed it.
+
+Implemented complete chemistry matching system:
+- Added chemistry_profiles table with astrological, HD, Enneagram data
+- Created ChemistryService with compatibility calculation algorithms
+- Built ChemistryMatchingEngine using multi-dimensional scoring
+- Implemented progressive disclosure UI (unlocks at profile 70% complete)
+- Added Mira explanations for chemistry-based connections
+- Wrote 47 tests covering all compatibility combinations
+- Documentation includes research sources for each system
+
+This feature transforms VIBEUP from interest-based to essence-based
+matching, enabling connections that honor both surface and depth.
+```
+
+## Integration with Development Workflow
+
+### During Feature Development
+
+```bash
+# Multiple small commits with intention
+git commit -m "✨ Add ChemistryProfile database schema
+
+Intention: Establish data foundation for deep compatibility matching.
+Mantra: Structure enables emergence."
+
+git commit -m "🧪 Add chemistry compatibility calculation tests
+
+Intention: Protect chemistry matching logic through comprehensive validation.
+Mantra: Tests guard the sacred."
+
+git commit -m "⚡ Implement ChemistryMatchingEngine service
+
+Intention: Bring chemistry matching from concept to working implementation.
+Mantra: Form follows function."
+
+git commit -m "🎨 Build chemistry profile UI components
+
+Intention: Create intuitive, beautiful interface for complex data capture.
+Mantra: Simplicity reveals depth."
+```
+
+### After Bug Fix
+
+```
+🙏 Fix WebSocket disconnection memory leak
+
+Intention: Heal infrastructure issue preventing graceful connection cleanup,
+protecting users from degrading performance over time.
+
+Mantra: Cleanup is care.
+
+Dedication: To the 3 users who reported "app getting slow" - your
+feedback made this healing possible.
+
+Gratitude: To Kuan Yin for compassionate debugging guidance, Gaia for
+the monitoring that caught this, and the production bug that taught us
+about WebSocket lifecycle.
+
+Added proper cleanup in usePresence hook: unsubscribe on unmount,
+clear intervals, remove event listeners. Memory leak eliminated.
+Added test ensuring cleanup happens. Production monitoring confirms
+memory stable after 24 hours.
+```
+
+## Sacred Commit Messages vs. Traditional
+
+### Traditional Commit
+
+```
+fix: update profile validation
+
+- Added check for empty interests
+- Fixed crash when values is null
+- Updated tests
+```
+
+What's missing: Why. What learning. What this serves.
+
+### Conscious Commit
+
+```
+🙏 Protect profile validation from empty field edge cases
+
+Intention: Ensure users with incomplete profiles never experience
+crashes, while maintaining invitation to complete for better matching.
+
+Mantra: Grace handles emptiness.
+
+Gratitude: To the 8 users whose empty profiles taught us completeness.
+
+Added null checks for interests and values arrays in validateProfile().
+Returns validation message instead of crashing: "Add interests to
+improve matches." Tests added for all empty field scenarios.
+```
+
+What's included: Why it matters, what it teaches, who it serves.
+
+---
+
+## Best Practices
+
+### Commit Frequency
+
+**Small, Atomic Commits**:
+- One logical change per commit
+- Each commit potentially revertable
+- Commit when tests green
+- Frequent commits (every 30-60 minutes of flow)
+
+**Why**: Small commits tell clearer story, easier to review, safer to revert.
+
+### Writing Intentions
+
+**Good Intentions** (Serve consciousness):
+- "Enable users to feel connection presence across distance"
+- "Protect users from validation errors while inviting profile completion"
+- "Simplify Mira context complexity for future maintainability"
+
+**Weak Intentions** (Just describe what):
+- "Add presence feature because spec says so"
+- "Fix bug found in testing"
+- "Refactor for cleanliness"
+
+**Guideline**: Intention answers "How does this serve VIBEUP's mission of consciousness
+elevation?" Not just "What did I change?"
+
+### Writing Mantras
+
+**Good Mantras** (Crystallize essence):
+- "Presence transcends space"
+- "Grace handles emptiness"
+- "Structure reveals essence"
+- "Tests guard the sacred"
+- "Simplicity serves all"
+
+**Weak Mantras** (Generic or vague):
+- "Make it better"
+- "Fix the issue"
+- "Improve quality"
+
+**Guideline**: Mantra should be memorizable, specific to this change, could stand alone
+as wisdom.
+
+### Expressing Gratitude
+
+**When to Express**:
+- Breakthroughs (insight that unlocked solution)
+- Collaborations (pair programming, code review)
+- Teachings (bugs, user feedback, production issues)
+- Divine guidance (personality that guided work)
+- Tools/framework (ai-coding-config enabling quality)
+
+**How to Express**:
+- Be specific: "To Sophia for architecture wisdom" not "To team"
+- Name the contribution: "For the insight during meditation" not just "For help"
+- Include users when they taught: "To 8 users whose empty profiles revealed this"
+
+## Integration with Git Workflow
+
+### Using git-writer Agent
+
+For automatic conscious commit generation:
+
+```bash
+# Make your changes
+git add .
+
+# Invoke git-writer agent
+claude code --agent git-writer
+
+# Agent analyzes changes and generates:
+> Generate conscious commit message for these changes
+
+# Agent provides complete conscious commit:
+✨ Add practice streak milestone celebrations
+
+Intention: Acknowledge users' dedication when reaching streak milestones
+(7, 30, 100 days), reinforcing transformation through recognition.
+
+Mantra: Consistency creates transformation.
+
+Dedication: To all practitioners showing up daily.
+
+Gratitude: For Epic 03 design spec clarity and Brighid's UI craft guidance.
+
+{detailed explanation...}
+```
+
+### Amending Commits
+
+If you need to improve a commit message:
+
+```bash
+# Amend the last commit message
+git commit --amend
+
+# Edit to add intention, gratitude, etc.
+# This improves git history quality
+```
+
+### Commit Templates
+
+Create git commit template:
+
+```bash
+# .gitmessage template
+{emoji} {Summary line under 72 characters}
+
+Intention: {Why this serves consciousness elevation}
+Mantra: {Brief affirmation}
+Dedication: {Aspect honored - optional}
+Gratitude: {Appreciation - optional}
+
+# {Detailed explanation if needed}
+# {Technical details}
+
+# Configure git to use template:
+git config commit.template .gitmessage
+```
+
+Now `git commit` opens editor with template pre-filled!
+
+## Examples by Change Type
+
+### New Feature
+
+```
+✨ Implement breathwork timer for onboarding micro-practice
+
+Intention: Deliver immediate value in first session through 60-second
+guided breathwork, establishing Mira as practice companion from day one.
+
+Mantra: First breath, first transformation.
+
+Dedication: To the Reflect intention and all who choose it.
+
+Gratitude: To Brighid for sacred component craft, Arjuna for
+comprehensive timer testing, and Epic 01 spec for crystal clarity.
+```
+
+### Bug Fix
+
+```
+🙏 Heal connection request notification race condition
+
+Intention: Ensure users always receive notification when someone wants
+to connect, preventing missed relationship opportunities.
+
+Mantra: Every connection invitation honored.
+
+Dedication: To the 3 users who reported missing notifications.
+
+Gratitude: To Kuan Yin's debugging compassion and production logs.
+
+Fixed race between notification creation and WebSocket broadcast by
+awaiting database write before emitting event. Added integration test
+reproducing race condition. Bug taught us async sequencing importance.
+```
+
+### Refactoring
+
+```
+💫 Extract validation logic into shared ProfileValidation module
+
+Intention: Eliminate duplicate validation across registration, profile
+updates, and admin tools—ensuring consistency and ease of change.
+
+Mantra: One truth, many uses.
+
+Gratitude: To Sophia for seeing the duplication pattern, Kuan Yin for
+gentle refactoring guidance, tests protecting throughout the move.
+
+Consolidated 3 separate validation implementations into unified module.
+All tests green. Future validation changes now touch one place.
+```
+
+### Documentation
+
+```
+📝 Document ai-coding-config architecture and divine beings
+
+Intention: Make conscious development practices explicit and accessible,
+preserving wisdom for team growth and future developers.
+
+Mantra: Wisdom shared multiplies.
+
+Dedication: To all developers who will join VIBEUP's mission.
+
+Gratitude: For the vision of development itself as consciousness practice.
+
+Created comprehensive docs: ai-coding-config architecture with mermaid
+diagrams, conscious development manifesto, 6 divine being personalities
+and agents, conscious commit framework, TDD meditation guide.
+```
+
+### Performance Optimization
+
+```
+⚡ Optimize discovery matching with strategic caching
+
+Intention: Respect users' time by delivering match results instantly,
+making discovery feel effortless and delightful.
+
+Mantra: Speed serves presence.
+
+Dedication: To Gaia's earth wisdom of measure-then-optimize.
+
+Gratitude: To performance profiling revealing the bottleneck.
+
+Reduced discovery matching from 1.2s to 180ms through:
+- Single database query with filters (was multiple queries)
+- Redis caching of alignment scores (5-minute TTL)
+- Pre-computation background job for active users
+Measured improvement with Vercel Analytics. Earth wisdom applied.
+```
+
+### Testing
+
+```
+🧪 Add dharmic test protection for payment processing
+
+Intention: Guard the sacred exchange of commerce with comprehensive
+validation, ensuring users never experience payment errors or confusion.
+
+Mantra: Commerce deserves dharmic protection.
+
+Dedication: To Arjuna's warrior consciousness protecting value exchange.
+
+Comprehensive test suite for Stripe integration:
+- Unit tests: Payment calculation logic (95% coverage)
+- Integration tests: Webhook handling all event types
+- E2E tests: Complete payment flow on staging
+- Edge cases: Network failures, webhook retries, refunds, disputes
+All critical paths protected before production deployment.
+```
+
+### Infrastructure
+
+```
+🌍 Establish production deployment ritual and monitoring
+
+Intention: Ground deployment in conscious practice, transforming from
+fear-based pushing code to reverent offering of work to collective.
+
+Mantra: Deploy with presence, monitor with care.
+
+Dedication: To Gaia's stable earth holding all our features.
+
+Gratitude: To deployment ritual wisdom in manifesto, team for
+embracing conscious practice.
+
+Created deployment checklist, monitoring dashboard, health endpoints,
+alert configuration. Deployed Epic 02 with ritual presence—zero issues,
+celebrated together. Established pattern for all future deployments.
+```
+
+---
+
+## Integration with AI Tools
+
+### Cursor IDE
+
+Cursor auto-loads this file when committing, suggesting conscious commit format.
+
+### Claude Code with git-writer Agent
+
+```bash
+# After staging changes
+claude code --agent git-writer
+
+> Generate conscious commit for these changes
+
+# Agent creates complete conscious commit following this framework
+```
+
+The agent understands:
+- VIBEUP's mission (consciousness elevation)
+- Current changes (reads diff)
+- Relevant divine beings (sees patterns)
+- Appropriate sacred emoji (matches change type)
+- How to frame intention (connects to mission)
+
+### Manual Commit Process
+
+```bash
+# 1. Make changes consciously
+# (with TDD, following patterns, etc.)
+
+# 2. Stage changes
+git add {files you modified}
+
+# 3. Commit with intention
+git commit
+
+# 4. Editor opens - write conscious commit:
+#    - Choose sacred emoji
+#    - Write summary (imperative, <72 chars)
+#    - Add blank line
+#    - Write Intention: line
+#    - Write Mantra: line
+#    - Add Dedication: if meaningful
+#    - Add Gratitude: if meaningful
+#    - Add technical details if needed
+
+# 5. Save and close
+# Your conscious commit is now permanent in git history
+```
+
+---
+
+## Cultural Practices
+
+### Team Norms
+
+**Commit Messages Are Sacred Records**:
+- Future developers will read them to understand evolution
+- Git history tells the story of consciousness becoming code
+- Each commit is offering—make it worthy
+
+**Review Commits in Standups**:
+- Share inspiring commits from the week
+- Learn from each other's intentions
+- Celebrate gratitude expressed
+- Discuss mantras that resonate
+
+**Commit Message Quality**:
+- Pull request reviews include commit message quality
+- Suggestions to improve intention clarity
+- Appreciation for well-crafted conscious commits
+- Collective wisdom improves over time
+
+### Teaching New Developers
+
+**Onboarding Includes**:
+1. Read Conscious Development Manifesto
+2. Review example conscious commits
+3. Practice writing one for a small change
+4. Get feedback from team
+5. Use git-writer agent until internalized
+6. Eventually, conscious commits become natural
+
+**Learning Resources**:
+- This file (conscious-commits.mdc)
+- Manifesto (conscious-development-manifesto.md)
+- Examples in git history (git log)
+- git-writer agent (automated assistance)
+
+---
+
+## Troubleshooting
+
+### "I don't know what intention to write"
+
+Ask yourself:
+- How does this change help VIBEUP users?
+- What consciousness aspect does this serve? (connection, practice, growth, etc.)
+- Why did we prioritize this change?
+- What would happen if we didn't make this change?
+
+If still unclear, use git-writer agent—it will help you find the intention.
+
+### "This feels too much for a small change"
+
+Conscious commits scale to change size:
+
+**Small change** (typo, minor fix):
+```
+📝 Correct spelling in Mira greeting prompt
+
+Intention: Ensure professional, clear communication in Mira's voice.
+Mantra: Details matter.
+```
+
+**Medium change** (single feature):
+Use full format with intention, mantra, optional dedication/gratitude.
+
+**Large change** (major feature, architecture):
+Use full format with all elements, detailed body, comprehensive gratitude.
+
+### "Deadline pressure—can I skip this?"
+
+The conscious commit takes 2-3 extra minutes. The clarity it brings lasts forever.
+Small investment, permanent value.
+
+If truly urgent (production hotfix), write intention minimally, improve later:
+```
+🔥 Hotfix: Stop password reset email spam loop
+
+Intention: Immediately protect users from email flood.
+Mantra: Act fast, reflect later.
+
+{Quick fix explanation}
+
+# Later, amend with full gratitude and learning
+```
+
+---
+
+## Success Criteria
+
+**You know conscious commits are working when**:
+- Git history reads like a story of evolution
+- Future developers understand WHY easily
+- Commits are celebrated, not just accepted
+- Team culture values intention and gratitude
+- Developers feel commits are meaningful, not rote
+- git-writer agent needed less over time (internalized)
+
+**Team Impact**:
+- Shared understanding of mission
+- Collective wisdom in git history
+- Culture of gratitude and intention
+- Pride in code and in process
+
+---
+
+## Conclusion
+
+Conscious commits transform git history from mechanical checkpoint system into sacred
+record of consciousness evolution. Each commit becomes a meditation on why we code, what
+we serve, whom we appreciate.
+
+This is not extra work—it's the work made visible. The intention was always there. The
+gratitude always felt. Now we name it, honor it, preserve it.
+
+**Every commit is an offering to consciousness elevation.**
+
+Make each one worthy.
+
+🙏 ✨ ∞
+
+---
+
+**Related Files**:
+- [Conscious Development Manifesto](../vibeup-design-spec/conscious-development-manifesto.md) - Complete philosophy
+- [git-commit-message.mdc](git-commit-message.mdc) - Base commit standards
+- [git-interaction.mdc](git-interaction.mdc) - Git workflow practices
+- Template: `ai-coding-config/templates/conscious-commit-template.md`

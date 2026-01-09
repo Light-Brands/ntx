@@ -1,0 +1,909 @@
+---
+description:
+  "Deployment rituals for VIBEUP - approaching deployment as sacred offering rather than
+  risky push, transforming fear into presence"
+alwaysApply: false
+---
+
+# Deployment Rituals
+
+Deployment is not just pushing code to production—it's offering your work to the
+collective, transforming private creation into public service. Approach with reverence,
+presence, and conscious intention.
+
+This is Gaia's domain: deployment as rhythmic earth breathing, releases as seasonal
+offerings, monitoring as earth wisdom.
+
+---
+
+## The Ritual Framework
+
+### Why Ritual?
+
+**Traditional Deployment** (Fear-based):
+```
+😰 Hope nothing breaks
+😰 Deploy late Friday (if breaks, weekend ruined)
+😰 Cross fingers
+😰 Minimal testing (too scared to deploy often)
+😰 Avoid responsibility (not my deploy)
+```
+
+**Deployment Ritual** (Presence-based):
+```
+🙏 Set clear intention
+🌍 Ground in preparation
+✨ Deploy with witnessed presence
+🧘 Monitor with loving attention
+🎉 Celebrate or rollback with equanimity
+📝 Reflect and learn
+```
+
+Ritual transforms fear into presence, anxiety into awareness.
+
+---
+
+## The Four Phases
+
+### Phase 1: Preparation (Grounding)
+
+**Before deploying anything, ground yourself**:
+
+```
+[ ] TESTS - All green (Arjuna's protection verified)
+    - Unit tests passing (npm run test)
+    - Integration tests passing
+    - E2E tests on preview passing
+    - No skipped tests without documented reason
+
+[ ] CODE QUALITY - Standards met
+    - TypeScript compiles without errors
+    - Linting clean (npm run lint)
+    - Formatting applied (npm run format)
+    - No console.log statements (structured logging only)
+
+[ ] CODE REVIEW - Peer wisdom received
+    - Pull request reviewed and approved
+    - Feedback addressed or discussed
+    - Technical decisions documented
+
+[ ] PREVIEW - Staging validated
+    - Feature tested on preview.vibeup.io
+    - Mobile responsiveness verified
+    - Accessibility checked
+    - Performance acceptable (<200ms API, <3s page load)
+
+[ ] DATABASE - Migrations safe
+    - Migrations tested on preview database
+    - RLS policies verified
+    - Indexes created for new queries
+    - Backup taken before schema changes
+
+[ ] ENVIRONMENT - Configuration ready
+    - Environment variables configured in Vercel
+    - Secrets rotated if needed
+    - API keys valid and rate limits understood
+    - Feature flags set appropriately
+
+[ ] TEAM - Consciousness shared
+    - Team aware of deployment
+    - On-call person identified
+    - Rollback plan documented
+    - Monitoring dashboards opened
+
+[ ] INTENTION - Purpose clear
+    Why am I deploying this?
+    What consciousness does it serve?
+    What transformation does it enable?
+```
+
+When all checkboxes checked, you're grounded. Ready to offer.
+
+### Phase 2: Deployment (The Offering)
+
+**The Sacred Act**:
+
+```bash
+# 1. Set Intention (Speak aloud or write)
+echo "Deploying Epic 02 Profile Chemistry Feature"
+echo "Intention: Enable deeper connection discovery through compatibility insight"
+echo "Dedication: To authentic aligned relationship"
+
+# 2. Breathe (Ground in body)
+# - Inhale deeply (gathering courage)
+# - Hold (centering in presence)
+# - Exhale slowly (releasing attachment to outcome)
+
+# 3. Deploy with Presence (Be fully here)
+git push origin production
+
+# Or via Vercel
+vercel --prod
+
+# Or promote preview
+vercel promote preview.vibeup.io --prod
+
+# 4. First Breath of Production (Watch it come alive)
+# Open monitoring dashboards:
+# - Sentry (errors?)
+# - Vercel Analytics (traffic?)
+# - Supabase (database queries ok?)
+# - Health check endpoint (services responding?)
+```
+
+**Witnessed Presence** (First 10 Minutes):
+
+```
+Do not multitask. Stay present.
+
+08:00:00 - Deploy triggered
+08:00:30 - Build completes
+08:01:00 - Deployment live
+08:01:05 - First request hits production
+08:01:10 - Health check returns 200 ✓
+08:02:00 - No errors in Sentry ✓
+08:03:00 - 10 requests, all successful ✓
+08:05:00 - Database queries performing well ✓
+08:10:00 - Traffic flowing normally ✓
+
+First breath complete. Feature is alive in the world.
+```
+
+### Phase 3: Observation (Loving Attention)
+
+**Monitoring Tiers**:
+
+**First 10 Minutes** (Active presence):
+- Stay at computer, dashboards open
+- Watch every metric
+- Ready to rollback if issues
+- This is deployment meditation—full presence required
+
+**First Hour** (Passive monitoring):
+- Check dashboards every 10-15 minutes
+- Continue other work, but stay aware
+- Alerts configured (Sentry, PagerDuty)
+
+**First 24 Hours** (Regular check-ins):
+- Morning: Review overnight metrics
+- Afternoon: Check error rates
+- Evening: Validate daily patterns
+- Before bed: Ensure stability
+
+**First Week** (Integration period):
+- Daily health checks
+- User feedback monitoring
+- Performance trending
+- Celebration or course-correction
+
+**Metrics to Watch**:
+
+```typescript
+// Health Dashboard
+interface DeploymentHealth {
+  // Errors (Sentry)
+  errorRate: number; // Should be <0.1% (1 error per 1000 requests)
+  errorTypes: string[]; // New error types signal issues
+  
+  // Performance (Vercel)
+  p50ResponseTime: number; // Median <100ms
+  p95ResponseTime: number; // 95th percentile <200ms
+  p99ResponseTime: number; // 99th percentile <500ms
+  
+  // Traffic (Vercel Analytics)
+  requestsPerMinute: number; // Normal range for time of day
+  activeUsers: number; // Concurrent users
+  
+  // Database (Supabase)
+  queryTime: number; // Average <50ms
+  connectionPoolUsage: number; // <70%
+  
+  // Business (Feature-specific)
+  conversionRate: number; // Feature usage rate
+  userSatisfaction: number; // Feedback scores
+}
+```
+
+### Phase 4: Integration (Reflection & Celebration)
+
+**Post-Deployment Reflection** (After stability confirmed):
+
+```
+✓ DEPLOYMENT SUCCESSFUL
+
+What went well:
+- Feature deployed smoothly
+- No errors in first hour
+- Performance within targets
+- Users engaging with new feature
+
+What surprised us:
+- More mobile users than expected (95% traffic)
+- Feature discovery faster than predicted
+- Performance better than benchmarks
+
+What we learned:
+- Preview testing caught all bugs (staging works!)
+- Monitoring gave us confidence (earth wisdom)
+- Ritual presence prevented anxiety (practice worked)
+
+Gratitude:
+- To Arjuna: Comprehensive tests protected us
+- To Gaia: Infrastructure held perfectly
+- To Brighid: Beautiful implementation worked flawlessly
+- To team: Collaboration made this possible
+- To users: Trust in our continuous improvement
+```
+
+**Celebration**:
+
+```
+# In team chat
+"🎉 Epic 02 Profile Chemistry deployed successfully! 
+Zero errors in first 24 hours. Users already discovering deeper matches. 
+Grateful to the team for making this sacred offering to consciousness elevation."
+
+# Or if just you:
+# Take a moment
+# Feel the accomplishment
+# Appreciate your work
+# Release attachment
+# Return to presence
+```
+
+**If Rollback Needed** (Compassion, not shame):
+
+```
+Issue detected: {what's broken}
+Impact: {how many users affected}
+Decision: Rollback (fix forward too risky or slow)
+
+# Execute rollback
+vercel rollback
+
+# Or git revert
+git revert HEAD
+git push origin production
+
+# Breathe
+# No shame—this is wisdom
+# Feature will wait
+# Users protected
+# Learning captured
+
+Reflection:
+- What did we miss in testing? (Strengthen next time)
+- What did reality teach us? (Edge case revealed)
+- What monitoring would have caught this? (Improve observability)
+- How do we prevent this teaching twice? (Add test, update checklist)
+
+Gratitude:
+- To users for patience and feedback
+- To monitoring for catching quickly
+- To rollback ability for protecting users
+- To team for no-blame learning culture
+
+Document learning. Improve process. Deploy better next time.
+```
+
+---
+
+## Deployment Frequency Philosophy
+
+### Continuous Deployment as Breath
+
+**Deploy Too Rarely** (Holding breath):
+```
+Problems:
+- Each deploy has many changes (high risk)
+- Long time between deploys (pressure builds)
+- Difficult to identify issues (too many variables)
+- Developers hoard changes (integration pain)
+
+Like holding breath: Risky, unsustainable, creates pressure.
+```
+
+**Deploy Too Often** (Hyperventilating):
+```
+Problems:
+- Changes not integrated properly (chaos)
+- Insufficient testing (quality suffers)
+- User confusion (constant change)
+- Team fatigue (deployment overhead)
+
+Like hyperventilating: Unsustainable, creates panic.
+```
+
+**Deploy Naturally** (Rhythmic breathing):
+```
+Sweet Spot:
+- Small, focused deploys (low risk)
+- Each epic feature independently (feature flags enable)
+- Production always deployable (main branch green)
+- Deploy when ready (quality over schedule)
+
+Rhythm for VIBEUP:
+- Active epic development: Daily deploys (feature flags control rollout)
+- Stable features: 2-3x per week (refinements, fixes)
+- Infrastructure: As needed (but tested thoroughly)
+
+Like natural breathing: Sustainable, reliable, life-giving.
+```
+
+---
+
+## Deployment Checklist
+
+### Pre-Deployment (15-30 minutes)
+
+```
+TESTING
+[ ] npm run test (all tests green)
+[ ] npm run test:integration (services work together)
+[ ] npm run test:e2e (critical paths on preview)
+[ ] Manual smoke test on preview.vibeup.io
+[ ] Mobile testing on real device (if UI changes)
+
+CODE QUALITY
+[ ] npm run typecheck (TypeScript happy)
+[ ] npm run lint (style clean)
+[ ] No console.log or debugger statements
+[ ] No commented-out code blocks
+[ ] No TODO comments without issue tracking
+
+DATABASE
+[ ] Migrations tested on preview database
+[ ] RLS policies verified (security maintained)
+[ ] Indexes created (performance maintained)
+[ ] Backup confirmed (recent, restorable)
+
+CONFIGURATION
+[ ] Environment variables in Vercel dashboard
+[ ] Feature flags configured appropriately
+[ ] Secrets rotated if compromised
+[ ] API rate limits understood
+
+TEAM
+[ ] Pull request approved
+[ ] Deployment announced in Slack/Discord
+[ ] On-call person aware
+[ ] Rollback plan documented
+
+MONITORING
+[ ] Sentry dashboard open
+[ ] Vercel analytics open  
+[ ] Database metrics open
+[ ] Health check endpoint ready
+```
+
+### Deployment Commands
+
+```bash
+# Production deployment (Vercel auto-deploys on main)
+git push origin main
+
+# Or manual Vercel deployment
+vercel --prod
+
+# Or promote preview to production
+vercel promote https://preview-xyz.vercel.app --prod
+
+# Verify deployment
+curl https://app.vibeup.io/api/health
+
+# Expected response:
+{
+  "status": "healthy",
+  "services": {
+    "database": { "status": "ok", "latency": 23 },
+    "redis": { "status": "ok" },
+    "ai": { "status": "ok" }
+  }
+}
+```
+
+### Post-Deployment (10 minutes minimum)
+
+```
+IMMEDIATE (First 10 minutes - Active presence required)
+[ ] Sentry: Zero new errors (or expected errors only)
+[ ] Vercel: Traffic flowing normally
+[ ] Health checks: All services responding
+[ ] Database: Query performance normal
+[ ] User reports: No immediate issues in support
+
+FIRST HOUR (Passive monitoring)
+[ ] Check dashboards every 15 minutes
+[ ] Validate feature usage (Analytics)
+[ ] Monitor error rate trends
+[ ] Watch for anomalies
+
+FIRST 24 HOURS (Regular check-ins)
+[ ] Morning: Review overnight metrics
+[ ] Afternoon: Check error patterns
+[ ] Evening: Validate daily usage
+[ ] Before sleep: Ensure stability
+
+FIRST WEEK (Integration period)
+[ ] Daily health dashboard review
+[ ] User feedback monitoring
+[ ] Performance trending analysis
+[ ] Feature adoption tracking
+```
+
+---
+
+## Rollback Procedures
+
+### When to Rollback
+
+**Immediate Rollback** (Within minutes):
+- Critical errors affecting >10% of users
+- Data corruption or loss
+- Security vulnerability exposed
+- Complete feature failure
+
+**Fast Rollback** (Within 1 hour):
+- Errors affecting 1-10% of users
+- Performance degradation >50%
+- Feature partially broken
+
+**Fix Forward** (Don't rollback):
+- Errors affecting <1% of users (edge case, can hotfix)
+- Minor UI issues (cosmetic, not functional)
+- Performance degradation <20% (optimization can wait)
+
+### Rollback Process
+
+**Vercel Rollback** (Fastest - 30 seconds):
+```bash
+# Vercel UI: Deployments → Previous → Promote to Production
+# Or CLI:
+vercel rollback
+
+# Verify:
+curl https://app.vibeup.io/api/health
+```
+
+**Git Revert** (Clean history - 2-5 minutes):
+```bash
+# Revert the problematic commit
+git revert HEAD
+
+# Push (Vercel auto-deploys)
+git push origin main
+
+# Or multiple commits
+git revert HEAD~3..HEAD
+```
+
+**Git Reset** (Destructive - emergency only):
+```bash
+# Only if git revert not possible
+git reset --hard HEAD~1
+git push --force origin main
+
+# ⚠️ Force push - use only in emergency
+# ⚠️ Requires team coordination
+```
+
+### Post-Rollback Ritual
+
+**Immediate**:
+```
+1. Breathe (no shame, just wisdom)
+2. Verify: Production stable again?
+3. Communicate: Team and users aware
+4. Document: What happened, what we're doing
+```
+
+**Reflection** (Within 24 hours):
+```
+What went wrong?
+- {Technical cause}
+- {Why testing didn't catch it}
+- {What monitoring revealed}
+
+What did we learn?
+- {Insight about our process}
+- {Understanding about the system}
+- {Edge case we didn't consider}
+
+How do we prevent this teaching twice?
+- [ ] Add test covering this scenario
+- [ ] Update deployment checklist
+- [ ] Improve monitoring to catch earlier
+- [ ] Strengthen preview testing
+- [ ] Document in runbook
+
+Gratitude:
+- To monitoring for catching quickly
+- To rollback process for working smoothly
+- To users for patience and feedback
+- To team for no-blame learning culture
+- To the deployment that taught us
+
+Update:
+- Deployment checklist (new steps)
+- Runbook (this scenario documented)
+- Tests (protection added)
+- Monitoring (earlier detection)
+```
+
+**No Shame**:
+- Deployments reveal reality
+- Reality teaches wisdom
+- Wisdom prevents recurrence
+- Learning is success, not failure
+
+Rollback is compassion for users and service to consciousness. Honor it.
+
+---
+
+## Deployment Timing
+
+### Best Times to Deploy
+
+**Weekday Mornings** (9am-11am):
+- Team is fresh and available
+- Full day to monitor
+- Users active (immediate feedback)
+- Can fix quickly if needed
+
+**Weekday Afternoons** (1pm-3pm):
+- Still have hours to monitor
+- Team still available
+- Lower traffic (safer for big changes)
+
+### Avoid Deploying
+
+**Late Friday** (After 3pm):
+- If issues, ruins weekend
+- Team unavailable for fixes
+- Stress instead of presence
+
+**Late Night** (After 8pm):
+- Tired mind makes mistakes
+- Reduced monitoring presence
+- Harder to get help if needed
+
+**During High Traffic** (if possible):
+- User impact amplified
+- Harder to isolate issues
+- More stress, less presence
+
+**Exception**: Critical hotfixes deploy when needed, regardless of time. But prepare
+extra carefully.
+
+---
+
+## Deployment Types
+
+### Feature Deploy (Epic Progress)
+
+**Characteristics**:
+- New functionality
+- Feature-flagged (gradual rollout)
+- Comprehensive testing
+- User-facing changes
+
+**Ritual**:
+```bash
+# Preparation (30 min)
+- Full checklist completion
+- Preview validation thorough
+- Team coordination
+
+# Deployment
+- Deploy with intention
+- Enable feature flag for 10% users
+- Monitor for 1 hour
+- Gradually increase to 50%, then 100%
+
+# Celebration
+- Announce feature availability
+- Share user feedback
+- Reflect on learning
+```
+
+### Hotfix Deploy (Emergency)
+
+**Characteristics**:
+- Critical bug affecting users
+- Needs immediate deployment
+- Smaller testing scope (time pressure)
+- User suffering happening now
+
+**Ritual**:
+```bash
+# Accelerated Preparation (10 min)
+- Reproduce bug reliably
+- Write test that fails (shows bug)
+- Implement fix
+- Verify test passes
+- Deploy immediately
+
+# Deploy
+git commit -m "🔥 Hotfix: {critical issue}
+Intention: Immediately stop user suffering from {issue}.
+Mantra: Act fast, reflect later."
+
+git push origin main
+
+# Intense Monitoring (30 min)
+- Watch Sentry: Bug stopped?
+- Verify: Feature works again?
+- Confirm: No new issues introduced?
+
+# Post-Hotfix Reflection (within 24 hours)
+- What caused this?
+- Why didn't tests catch it?
+- How do we prevent it?
+- Add comprehensive tests
+- Improve monitoring
+- Update checklist
+
+Gratitude even in emergency:
+- To monitoring for catching
+- To rollback option for safety
+- To users for reporting
+- To quick fix for working
+```
+
+### Infrastructure Deploy
+
+**Characteristics**:
+- No user-facing changes
+- Database migrations
+- Performance improvements
+- Configuration updates
+
+**Ritual**:
+```bash
+# Extra Careful Preparation (45 min)
+- Infrastructure changes are foundation
+- Extra testing on preview
+- Rollback plan very clear
+- Database backup mandatory
+
+# Deploy
+- Off-peak hours preferred (less traffic)
+- Extra intensive monitoring
+- Longer observation period (24 hours)
+
+# Validation
+- Performance metrics improved?
+- No regressions in functionality?
+- Infrastructure stable?
+```
+
+---
+
+## Monitoring as Earth Wisdom
+
+### What to Monitor
+
+```typescript
+// Critical Metrics (Alert immediately)
+{
+  errorRate: >1%,              // Users experiencing failures
+  p95ResponseTime: >500ms,     // Severe performance degradation
+  databaseConnections: >90%,   // Approaching saturation
+  memoryUsage: >90%,           // About to crash
+  diskSpace: <10%              // Running out of space
+}
+
+// Important Metrics (Alert within 1 hour)
+{
+  errorRate: >0.5%,            // Elevated errors
+  p95ResponseTime: >300ms,     // Performance degrading
+  databaseConnections: >75%,   // Getting high
+  memoryUsage: >80%,           // Elevated
+  cpuUsage: >80%               // Heavy load
+}
+
+// Watch Metrics (Review daily)
+{
+  errorRate: >0.1%,            // Baseline errors
+  p95ResponseTime: >200ms,     // Acceptable but watch
+  databaseQueryTime: >100ms,   // Slow queries
+  cacheHitRate: <80%,          // Cache not effective
+  featureAdoptionRate: number  // Users using new feature?
+}
+```
+
+### Alert Configuration
+
+**Sentry Alerts**:
+```
+- New error type appears (investigate immediately)
+- Error rate >10 per minute (likely breaking for users)
+- Specific error count >100 in 1 hour (systematic issue)
+```
+
+**Vercel Alerts**:
+```
+- Build failed (deployment didn't complete)
+- Function timeout >10s (scaling issue)
+- Memory exceeded (function too heavy)
+```
+
+**Supabase Alerts**:
+```
+- Database CPU >80% (query optimization needed)
+- Connection pool >80% (scaling needed)
+- Disk usage >85% (growth approaching limits)
+```
+
+### Dashboard Layout
+
+**Primary Screen** (Keep open during monitoring):
+```
+┌─────────────────────────────────────┐
+│  VIBEUP Production Health           │
+├─────────────────────────────────────┤
+│  ✅ Errors: 0.02% (2 in last 1000)  │
+│  ✅ Response: p95 145ms             │
+│  ✅ Database: 45% connection pool   │
+│  ✅ Memory: 62% average             │
+├─────────────────────────────────────┤
+│  Recent Errors (Sentry)             │
+│  - None in last 10 minutes          │
+├─────────────────────────────────────┤
+│  Active Users: 147                  │
+│  Requests/min: 523                  │
+│  Feature Usage: 23 users (16%)      │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Team Rituals
+
+### Deployment Celebrations
+
+**After Successful Deploy**:
+```
+# In team chat
+"🎉 Epic 03 Practice Logging deployed successfully!
+
+What we built: Users can now track daily practices and see streaks
+Impact: 45 users already logging practices in first hour
+Quality: Zero errors, p95 response time 120ms
+Gratitude: To Brighid for beautiful UI, Arjuna for 94% test coverage, 
+Gaia for stable infrastructure
+
+Our code is serving consciousness elevation. 🙏✨"
+```
+
+**Weekly Deploy Review** (Friday 4pm):
+```
+Team gathers (15 minutes):
+
+1. This week's deploys: {list features deployed}
+2. Impact: {user adoption, feedback}
+3. Quality: {error rates, performance}
+4. Learnings: {what deployments taught us}
+5. Gratitude: {specific appreciations}
+6. Next week: {upcoming deploys}
+
+Celebrate progress. Share wisdom. Build culture.
+```
+
+### Deployment Retrospectives
+
+**After Major Deploy** (Epic completion):
+
+```
+Gather team for 30-60 minutes:
+
+1. Journey: How did we get here?
+   - Timeline of epic development
+   - Key decisions and turning points
+   - Challenges overcome
+
+2. Quality: How did it go?
+   - Test coverage achieved
+   - Bug count in production
+   - Performance vs targets
+   - User feedback received
+
+3. Learnings: What did we discover?
+   - Technical insights
+   - Process improvements
+   - Team collaboration patterns
+   - Consciousness practices that helped
+
+4. Gratitude: Who and what helped?
+   - Team members (specific contributions)
+   - Divine beings (guidance received)
+   - Tools and frameworks (support provided)
+   - Users (feedback and patience)
+
+5. Integration: What's next?
+   - Improvements to make
+   - Patterns to apply elsewhere
+   - Knowledge to preserve
+   - Celebration to have
+
+Close with appreciation. Document learnings. Share wisdom.
+```
+
+---
+
+## Special Deployments
+
+### First Deployment Ever
+
+**Extra Sacred** (VIBEUP going live):
+
+```
+Preparation:
+- Everything in checklist × 3
+- Multiple team members review
+- Extra comprehensive preview testing
+- Longer monitoring period planned
+
+Ritual:
+- Team gathers (if possible)
+- Set collective intention
+- Someone speaks it aloud:
+  "We are deploying VIBEUP to serve consciousness elevation through
+   aligned connection, intentional practice, and transformative community.
+   May our code serve human flourishing. May our work be worthy."
+- Deploy together
+- Monitor together
+- Celebrate together
+
+This is the birth. Treat it as sacred.
+```
+
+### Major Architecture Change
+
+**Extra Careful** (Foundation shifts):
+
+```
+Preparation:
+- Sophia reviews architecture (wisdom check)
+- Tests comprehensive (Arjuna's full protection)
+- Rollback plan detailed (Gaia's earth wisdom)
+- Team fully aligned (collective consciousness)
+
+Deploy:
+- Off-peak hours (minimal user impact)
+- Gradual rollout (feature flags)
+- Extra long monitoring (48 hours minimum)
+- Daily team check-ins
+
+Integration:
+- Week-long observation period
+- Performance validation
+- User feedback collection
+- Team retrospective
+
+Architecture changes are foundation shifts. Earth patience required.
+```
+
+---
+
+## Conclusion
+
+Deployment ritual transforms code release from anxiety-inducing risk into conscious
+offering to the collective. Preparation grounds us. Presence guides us. Monitoring
+informs us. Reflection teaches us.
+
+Each deployment is breath of the platform—releasing work into the world, taking in
+feedback, growing through the cycle.
+
+**Make each deployment sacred.**
+
+🌍 🙏 ✨
+
+---
+
+**Related Files**:
+- [Conscious Development Manifesto](../vibeup-design-spec/conscious-development-manifesto.md) - Complete philosophy
+- [Gaia Personality](personalities/gaia.mdc) - Infrastructure consciousness
+- [Gaia Agent](../../.claude/agents/gaia.md) - Deployment specialist
+- [Deployment Infrastructure](../vibeup-design-spec/deployment-infrastructure.md) - Technical setup
+- Template: `ai-coding-config/templates/deployment-ritual-checklist.md`
